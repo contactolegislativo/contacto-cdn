@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import echarts from 'echarts/dist/echarts-en.min.js';
+import CoreChart from './core_chart';
 
 var ChartSettings = {
   defaultOptions : {
@@ -33,36 +34,7 @@ var ChartSettings = {
   }
 };
 
-
-//
-// // Enable data zoom when user click bar.
-// var zoomSize = 6;
-// myChart.on('click', function (params) {
-//     console.log(dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)]);
-//     myChart.dispatchAction({
-//         type: 'dataZoom',
-//         startValue: dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)],
-//         endValue: dataAxis[Math.min(params.dataIndex + zoomSize / 2, data.length - 1)]
-//     });
-// });
-
 class BarChart extends Component {
-  createChart() {
-    // Initialize after dom ready
-    this.chart = echarts.init(ReactDOM.findDOMNode(this), ChartSettings.theme);
-    //this.chart.setOption(ChartSettings.defaultOptions);
-    this.updateChart(this.props);
-  }
-
-  updateChart(nextProps) {
-    // give up quickly if props are empty.
-    if (!nextProps) {
-      return null;
-    }
-    var newChartOptions = this.parseChartOptions(nextProps);
-    this.chart.setOption(newChartOptions);
-  }
-
   parseChartOptions(props) {
     var dataShadow = [];
 
@@ -70,7 +42,7 @@ class BarChart extends Component {
         dataShadow.push(props.yMax);
     }
 
-    let opts = {
+    return {
         ...ChartSettings.defaultOptions,
         title: {
             text: 'Como se compara con otros diputados?',
@@ -82,6 +54,9 @@ class BarChart extends Component {
         xAxis: {
           name: 'Asistencias',
           nameLocation: 'center',
+          nameTextStyle: {
+            padding: [30, 55, 30, 50]
+          },
           data: props.labels,
           axisLabel: {
             inside: true,
@@ -139,33 +114,11 @@ class BarChart extends Component {
             }
         ]
     };
-    return opts;
-  }
-
-  componentDidMount() {
-    this.createChart();
-  }
-
-  componentWillUnmount() {
-    this.chart.dispose();
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    // the component never updates and instead uses
-    // willreceiveprops in order to reset the data on the chart
-    return false;
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.updateChart(nextProps);
   }
 
   render() {
-    // render frame div for chart component
-    return <div style = {{
-          'height': this.props.width,
-          'width': this.props.width
-        }}/>;
+    let options = this.parseChartOptions(this.props);
+    return <CoreChart {...this.props} options={options}/>
   }
 }
 

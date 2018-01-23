@@ -83,7 +83,7 @@ class AttendanceGraph extends Component {
     maxLength = seriesArray[0].total > seriesArray[1].total ? seriesArray[0].total : seriesArray[1].total
 
     return (
-      <div>
+      <div className="chart">
         <h3 className="text-center">Asistencia</h3>
         <h5 className="text-center mt-2">¿Como ha atendido sus deberes tu diputado?</h5>
         <DoughnutChart
