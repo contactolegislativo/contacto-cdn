@@ -1,0 +1,29 @@
+.d-card {
+ width: 100%;
+}
+
+.d-card .secondary-section {
+  min-height: 150px;
+}
+
+.d-card-header {
+  text-align: center;
+}
+
+@media screen and (min-width: 990px) {
+  .d-card .main-section {
+    position: fixed;
+    width: 50%;
+    bottom: 0;
+    top: 0;
+    z-index: -1;
+    padding-top: 3.5rem;
+  }
+
+  .d-card .secondary-section {
+    margin-left: 50%;
+    background-color: #eee;
+    width: 50%;
+  }
+
+}

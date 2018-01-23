@@ -1,0 +1,19 @@
+%stack {
+  display: flex;
+  .stack-fix {
+    flex-grow: 0;
+  }
+  .stack-fit {
+    flex-grow: 1;
+  }
+}
+
+.vstack {
+  @extend %stack;
+  flex-flow: column wrap;
+}
+
+.hstack {
+  @extend %stack;
+  flex-flow: row wrap;
+}

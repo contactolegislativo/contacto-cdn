@@ -1,0 +1,74 @@
+%item-centered {
+  position: absolute;
+  transform: translate(-50%);
+  bottom: 50%;
+  left: 50%;
+}
+
+.workspace {
+  position: relative;
+  width: 100%;
+  .map {
+    height: 100%;
+    width: 100%;
+    background: #eaeaea;
+  }
+
+  .spinner-modal {
+      @extend %item-centered;
+      padding: 1rem;
+      border-radius: 3px;
+      background: #dc3545;
+      color: #fff;
+      text-align: center;
+      .cssload-loader {
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+      }
+  }
+
+  .search-bar {
+      position: absolute;
+      z-index: 1;
+      background: #F5F5F6;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .spinner-modal {
+    min-width: 90%;
+  }
+
+  .form-inline .btn {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 990px) {
+  .spinner-modal {
+    min-width: 80%;
+  }
+  .search-bar {
+      top: 0;
+      left: 0;
+      border-radius: 0px;
+      padding: 0rem 0.5rem;
+      width: 100%;
+    }
+}
+
+@media screen and (min-width: 990px) {
+  .search-bar {
+      top: 10px;
+      left: 10px;
+      padding: 1rem;
+      border-radius: 3px;
+  }
+}
+
+/* Info Window */
+.infobox {
+  position: absolute;
+  background-color: rgba(0,0,0,0);
+  border: 0px none;
+}

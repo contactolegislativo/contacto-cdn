@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <meta charset="UTF-8">
+     <meta name="theme-color" content="#dc3545">
+     <title>Contacto Legislativo</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  </head>
+  <body class="vstack">
+    <nav class="stack-fix navbar navbar-expand-lg navbar-dark bg-danger">
+      <a class="navbar-brand" href="/">
+        <img alt="Contacto Legislativo" src="assets/img/logo.png"> <span>Contacto Legislativo</span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="stack-fit workspace">
+      <div class="search-bar">
+        <form class="form-inline my-2 my-lg-0">
+          <select id="states" class="form-control mr-sm-2" aria-label="Search">
+            <option value="">-- Select --</option>
+          </select>
+        </form>
+      </div>
+      <div id="map" class="map">
+      </div>
+      <div id="modal" class="spinner-modal">
+        <h4>Estamos ubucando los distritos de tu estado</h4>
+        <span class="cssload-loader"><span class="cssload-loader-inner"></span></span>
+        <h5>Deseo seleccionar mi estado.</h5>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+    <script src="/assets/js/main.bundle.js"></script>
+  </body>
+</html>
