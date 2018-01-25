@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import echarts from 'echarts/dist/echarts-en.min.js';
-import CoreChart from './core_chart';
+import CoreChart, { CoreHelper } from './core_chart';
 
 var ChartSettings = {
   pie: {
@@ -80,19 +80,11 @@ var ChartSettings = {
       ]
   },
   defaultOptions : {
+      title: CoreHelper.centerTitle,
+      toolbox: CoreHelper.saveAsImageToolbox,
       tooltip: {
           trigger: 'item',
           formatter: "{a} <br/>{b}: {c} ({d}%)"
-      },
-      // legend: {
-      //     orient: 'vertical',
-      //     x: 'left',
-      //     data:['A','B','C','E','F','G','H','I','J','K']
-      // },
-      title: {
-        show: true,
-        left: 'center',
-        bottom: 0
       },
       series: []
   },
