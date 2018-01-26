@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchAttendanceFrequency } from '../actions';
-import { DoublePieChart, BarChart } from 'react-echart';
+import { DoublePieChart, BarChart, GaugeChart } from 'react-echart';
 
 class AttendanceFrequencyGraph extends Component {
   componentDidMount() {
-    this.deputyId = parseInt(document.querySelector('meta[name="deputy-id"]').attributes.value.value);
-    this.deputyName = document.querySelector('meta[name="deputy-name"]').attributes.value.value;
     // Read API
     this.props.fetchAttendanceFrequency();
   }
@@ -88,10 +86,10 @@ class AttendanceFrequencyGraph extends Component {
     this.title = '';
     if(this.inner[0].value > this.inner[2].value) {
       let percentage = this.inner[0].value / (this.inner[0].value + this.inner[1].value + this.inner[2].value);
-      this.title = `${this.deputyName} \n tiene mejor asistencia que ${this.inner[0].value} diputados.`;
+      this.title = `${this.props.deputyName} \n tiene mejor asistencia que ${this.inner[0].value} diputados.`;
     } else {
       let percentage = this.inner[2].value / (this.inner[0].value + this.inner[1].value + this.inner[2].value);
-      this.title = `${this.inner[2].value} diputados tienen mejor asistencia que \n ${this.deputyName}`;
+      this.title = `${this.inner[2].value} diputados tienen mejor asistencia que \n ${this.props.deputyName}`;
     }
   }
 

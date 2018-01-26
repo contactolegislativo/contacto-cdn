@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import echarts from 'echarts/dist/echarts-en.min.js';
-import CoreChart, { CoreHelper } from './core_chart';
+import CoreChart from './core_chart';
+import CoreHelper from './core_helper';
 
 var ChartSettings = {
   theme: {

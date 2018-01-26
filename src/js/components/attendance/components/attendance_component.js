@@ -21,6 +21,8 @@ let simpleFormatter = function(name) {
       return 'Inasistencia justificada';
     case 'I':
       return 'Inasistencia';
+    case 'NA':
+      return 'No hay registro';
     default:
       return '';
   }
@@ -33,12 +35,8 @@ let complexFormatter = function(params){
 
 class AttendanceGraph extends Component {
   componentDidMount() {
-    // Gather DOM information
-    this.elementWidth = document.querySelector('.attendance').offsetWidth;
-    this.deputyId = parseInt(document.querySelector('meta[name="deputy-id"]').attributes.value.value);
-    this.deputyName = document.querySelector('meta[name="deputy-name"]').attributes.value.value;
     // Read API
-    this.props.fetchAttendance(this.deputyId);
+    this.props.fetchAttendance(this.props.deputyId);
   }
 
   renderPlaceholder() {
@@ -46,7 +44,7 @@ class AttendanceGraph extends Component {
       <div>
         <h3 className="text-center"></h3>
         <h5 className="text-center mt-2"></h5>
-        <div style={{"height": this.elementWidth + 'px'}}>
+        <div style={{"height": this.props.width + 'px'}}>
           <h4>Loading ...</h4>
         </div>
       </div>
@@ -80,7 +78,7 @@ class AttendanceGraph extends Component {
     });
 
     // Define max length of every classification
-    maxLength = seriesArray[0].total > seriesArray[1].total ? seriesArray[0].total : seriesArray[1].total
+    maxLength = seriesArray[0].total > seriesArray[1].total ? seriesArray[0].total : seriesArray[1].total;
 
     return (
       <div className="chart">
@@ -89,13 +87,13 @@ class AttendanceGraph extends Component {
         <DoughnutChart
            seriesArray={ seriesArray }
            limit={maxLength}
-           labels={['A','AO','PM','IV','AC','IJ','I']}
+           labels={['A','AO','PM','IV','AC','IJ','I','NA']}
            simpleFormatter={simpleFormatter}
            complexFormatter={complexFormatter}
-           width={this.elementWidth}
-           title={`${this.deputyName} \n ha tenido ${attendances} asistencias`}
+           width={this.props.width}
+           title={`${this.props.deputyName} \n ha tenido ${attendances} asistencias`}
            subtitle={'Fuente diputados.gob.mx'}
-           sublink={`http://sitl.diputados.gob.mx/LXIII_leg/asistencias_diputados_xperiodonplxiii.php?dipt=${this.deputyId}`}/>
+           sublink={`http://sitl.diputados.gob.mx/LXIII_leg/asistencias_diputados_xperiodonplxiii.php?dipt=${this.props.deputyId}`}/>
       </div>
     );
   }
