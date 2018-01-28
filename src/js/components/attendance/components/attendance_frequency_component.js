@@ -22,13 +22,8 @@ class AttendanceFrequencyGraph extends Component {
   }
 
   calculate() {
-    // Find attendance (deputyAttendance.value)
-    let deputyAttendance = this.props.attendance.find(item => {
-      return item.name === 'A';
-    });
-
     let groups = [], group = { value: 0, items: [] }, groupSize = 50;
-    this.inner = [{ value: 0, name: `< ${deputyAttendance.value}`}, { value: 0, name: `${deputyAttendance.value}`, selected: true }, { value: 0, name: `> ${deputyAttendance.value}`}];
+    this.inner = [{ value: 0, name: `< ${this.props.attendance}`}, { value: 0, name: `${this.props.attendance}`, selected: true }, { value: 0, name: `> ${this.props.attendance}`}];
     this.outer = [];
 
     function createSlice(group) {
@@ -44,9 +39,9 @@ class AttendanceFrequencyGraph extends Component {
 
     this.props.attendanceFrequency.forEach(item => {
 
-      if(item.quantity < deputyAttendance.value) {
+      if(item.quantity < this.props.attendance) {
         this.inner[0].value += item.frequency;
-      } else if(item.quantity === deputyAttendance.value) {
+      } else if(item.quantity === this.props.attendance) {
         this.inner[1].value += item.frequency;
         item.selected = true;
       } else {
@@ -94,10 +89,10 @@ class AttendanceFrequencyGraph extends Component {
   }
 
   render() {
-    // We need to have attedance and attendance frequency to display this chart
-    if(this.props.attendanceFrequency.length === 0
-      || this.props.attendance.length === 0)
+    // We need to have attedance and attendance frequency to display thisdeputyAttendance chart
+    if( this.props.attendanceFrequency.length === 0 || this.props.attendanceDetails.length === 0 ) {
       return this.renderPlaceholder();
+    }
 
     this.calculate();
     this.prepareTitle();
@@ -114,45 +109,13 @@ class AttendanceFrequencyGraph extends Component {
           sublink={`https://contactolegislativo.com/metodologia/asistencias`}/>
       </div>
     );
-
-    // let labels = [], data = [], yMax = 0;
-    //
-    // let deputyAttendance = this.props.attendance.find(item => {
-    //   return item.name === 'A';
-    // });
-    //
-    // this.props.attendanceFrequency.forEach((item, index) => {
-    //   labels.push(item.quantity);
-    //   data.push(item.frequency);
-    //
-    //   if(yMax < item.frequency)
-    //     yMax = item.frequency;
-    //
-    //   if(item.quantity === deputyAttendance.value) {
-    //     deputyAttendance.yAxis = item.frequency;
-    //     deputyAttendance.xAxis = index;
-    //   }
-    // });
-    //
-    // let marker = {
-    //   ...deputyAttendance,
-    //   name : this.props.deputyName,
-    //   value : deputyAttendance.value
-    // };
-
-    // <BarChart
-    //     labels={labels}
-    //     data={data}
-    //     yMax={yMax}
-    //     width={this.props.width}
-    //     marker={marker}
-    //    />
   }
 }
 
 export default connect((state) => {
   return {
     attendance: state.attendance,
+    attendanceDetails: state.attendanceDetails,
     attendanceFrequency: state.attendanceFrequency
   };
 }, { fetchAttendanceFrequency })(AttendanceFrequencyGraph);

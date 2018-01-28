@@ -56,7 +56,7 @@ let option = {
     bottom: 0,
     data:['01','02','03','04','05','06']
   },
-  toolbox: CoreHelper.saveAsImageToolbox
+  toolbox: CoreHelper.saveImageToolbox
 };
 
 class DoughnutChart extends Component {
@@ -110,6 +110,7 @@ class DoughnutChart extends Component {
         sublink: props.sublink
       },
       legend: {
+        ...CoreHelper.horizontalScrollLegend,
         data: props.labels,
         top: 55,
         formatter: props.simpleFormatter

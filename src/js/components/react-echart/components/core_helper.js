@@ -15,7 +15,10 @@ export default {
   saveImageToolbox: {
     show: true,
     feature: {
-        saveAsImage: {show: true}
+        saveAsImage: {
+          title: 'Guardar',
+          show: true
+        }
     }
   }
 };

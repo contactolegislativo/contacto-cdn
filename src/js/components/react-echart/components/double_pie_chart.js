@@ -81,13 +81,48 @@ var ChartSettings = {
       ]
   },
   defaultOptions : {
+    options: {
       title: CoreHelper.centerTitle,
-      toolbox: CoreHelper.saveAsImageToolbox,
+      toolbox: CoreHelper.saveImageToolbox,
       tooltip: {
           trigger: 'item',
           formatter: "{a} <br/>{b}: {c} ({d}%)"
       },
       series: []
+    },
+    media: [{
+      query: {
+          maxWidth: 600
+      },
+      option: {
+        series: [{
+            center: ['50%', '45%'],
+            radius: [0, '40%']
+          }, {
+            center: ['50%', '45%'],
+            radius: ['50%', '80%'],
+            label: {
+              normal: {
+                position: 'inner',
+                formatter: '{b} \n {c} \n {d}%',
+                backgroundColor: 'transparent',
+                borderColor: 'transparent',
+                borderWidth: 0,
+                borderRadius: 0,
+                rich: {}
+              }
+            },
+            labelLine: {
+              normal: {
+                show: false
+              },
+              emphasis: {
+                show: true
+              }
+            }
+          }]
+      }
+    }]
   },
   theme: {
     textStyle: {
@@ -99,26 +134,28 @@ var ChartSettings = {
 class DoublePieChart extends Component {
   render() {
     let options = {
-      ...ChartSettings.defaultOptions,
-      title: {
-        show: true,
-        left: 'center',
-        bottom: 0,
-        text: this.props.title,
-        subtext: this.props.subtitle || '',
-        sublink: this.props.sublink || ''
-      },
-      series: [
-        {
-          ...ChartSettings.pie,
-          data: this.props.inner
+      baseOption: {
+        ...ChartSettings.defaultOptions.options,
+        title: {
+          ...CoreHelper.centerTitle,
+          text: this.props.title,
+          subtext: this.props.subtitle || '',
+          sublink: this.props.sublink || ''
         },
-        {
-          ...ChartSettings.doughtnut,
-          data: this.props.outer
-        }
-      ]
-    }
+        series: [
+          {
+            ...ChartSettings.pie,
+            data: this.props.inner
+          },
+          {
+            ...ChartSettings.doughtnut,
+            data: this.props.outer
+          }
+        ]
+      },
+      media: ChartSettings.defaultOptions.media
+    };
+
     return <CoreChart {...this.props} options={options}/>
   }
 }

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchAttendance, fetchAttendanceFrequency } from '../actions';
+import { fetchAttendance } from '../actions';
 import { DoughnutChart } from 'react-echart';
-
-// TODO: API should provide this information
 
 let simpleFormatter = function(name) {
   switch (name) {
@@ -29,8 +27,7 @@ let simpleFormatter = function(name) {
 }
 
 let complexFormatter = function(params){
-  let text = simpleFormatter(params.name);
-  return `${text} \n ${params.value}`;
+  return `${params.data.description} \n ${params.value}`;
 }
 
 class AttendanceGraph extends Component {
@@ -52,19 +49,16 @@ class AttendanceGraph extends Component {
   }
 
   render() {
-    if(this.props.attendance.length === 0)
+    if(this.props.attendanceDetails.length === 0)
       return this.renderPlaceholder();
 
     let seriesArray = [{ name: 'Asistencias', data: [], total: 0 }, {name: 'Faltas', data: [], total: 0}];
-    let attendances = 0;
     let maxLength = 0;
 
     // Clasify attendance
-    this.props.attendance.forEach(item => {
+    this.props.attendanceDetails.forEach(item => {
       switch(item.name) {
         case 'A':
-          attendances += item.value;
-          item.label = { show: true, formatter: complexFormatter };
         case 'AO':
         case 'PM':
         case 'IV':
@@ -91,7 +85,7 @@ class AttendanceGraph extends Component {
            simpleFormatter={simpleFormatter}
            complexFormatter={complexFormatter}
            width={this.props.width}
-           title={`${this.props.deputyName} \n ha tenido ${attendances} asistencias`}
+           title={`${this.props.deputyName} \n ha tenido ${this.props.attendance} asistencias`}
            subtitle={'Fuente diputados.gob.mx'}
            sublink={`http://sitl.diputados.gob.mx/LXIII_leg/asistencias_diputados_xperiodonplxiii.php?dipt=${this.props.deputyId}`}/>
       </div>
@@ -101,6 +95,7 @@ class AttendanceGraph extends Component {
 
 export default connect((state) => {
   return {
-    attendance: state.attendance
+    attendance: state.attendance,
+    attendanceDetails: state.attendanceDetails
   };
-}, { fetchAttendance, fetchAttendanceFrequency })(AttendanceGraph);
+}, { fetchAttendance })(AttendanceGraph);

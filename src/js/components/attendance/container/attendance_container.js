@@ -6,7 +6,7 @@ export default function(props) {
     <div>
       <AttendanceGraph deputyId={props.deputyId} deputyName={props.deputyName} width={props.width}/>
       <AttendanceFrequencyGraph deputyId={props.deputyId} deputyName={props.deputyName} width={props.width}/>
-      <AttendanceComparisonGraph deputyId={props.deputyId} deputyName={props.deputyName} width={props.width}/>
+      <AttendanceComparisonGraph deputyId={props.deputyId} deputyName={props.deputyName} deputyParty={props.deputyParty} width={props.width}/>
     </div>
   )
 }

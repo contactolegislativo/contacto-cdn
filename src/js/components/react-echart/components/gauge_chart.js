@@ -4,6 +4,13 @@ import echarts from 'echarts/dist/echarts-en.min.js';
 import CoreChart from './core_chart';
 import CoreHelper from './core_helper';
 
+var formatter = function(value) {
+    value = (value + '').split('.');
+    value.length < 2 && (value.push('00'));
+    return ('000' + value[0]).slice(-3)
+        + '.' + (value[1] + '00').slice(0, 2);
+}
+
 /* Default axis format  */
 var gaugeAxis = {
   axisLine: {
@@ -41,14 +48,8 @@ var centerGauge = {
         fontStyle: 'italic'
     },
     detail : {
-        fontSize: 18,
-        formatter: function (value) {
-            value = (value + '').split('.');
-            value.length < 2 && (value.push('00'));
-            return ('00' + value[0]).slice(-2)
-                + '.' + (value[1] + '00').slice(0, 2)
-                + '\n Iniciativas';
-        }
+        fontSize: 22,
+        formatter: formatter
     },
     data:[{value: 40, name: 'Diputado'}]
 };
@@ -62,7 +63,7 @@ var leftGauge = {
     radius: '35%',
     min:0,
     max:7,
-    endAngle:45,
+    endAngle: 80,
     splitNumber:7,
     pointer: {
         width:5
@@ -71,7 +72,9 @@ var leftGauge = {
         offsetCenter: [0, '-30%'],
     },
     detail: {
-        fontWeight: 'bolder'
+        fontSize: 20,
+        fontWeight: 'bolder',
+        formatter: formatter
     },
     data:[{value: 1.5, name: 'Promedio \n Camara'}]
 };
@@ -85,7 +88,7 @@ let rightGauge = {
     radius: '35%',
     min:0,
     max:7,
-    startAngle: 135,
+    startAngle: 100,
     endAngle: -45,
     splitNumber:7,
     pointer: {
@@ -95,7 +98,9 @@ let rightGauge = {
         offsetCenter: [0, '-30%'],
     },
     detail: {
-        fontWeight: 'bolder'
+        fontSize: 20,
+        fontWeight: 'bolder',
+        formatter: formatter
     },
     data:[{value: 2.5, name: 'Promedio \n Plurinominal'}]
 };
@@ -103,9 +108,31 @@ let rightGauge = {
 /* Default format for Gauge Chart */
 var ChartSettings = {
   defaultOptions: {
+    baseOption: {
       tooltip : { formatter: "{b}<br/>{c} {a}" },
-      toolbox: CoreHelper.saveAsImageToolbox,
+      toolbox: CoreHelper.saveImageToolbox,
       series : []
+    },
+    media: [{
+      query: {
+          maxWidth: 600
+      },
+      option: {
+        series: [{
+              endAngle:45,
+              radius: '50%'
+            }, {
+              startAngle: 225,
+              endAngle: 45,
+              center: ['25%', '25%'],
+              radius: '40%'
+            }, {
+              endAngle: 45,
+              center: ['75%', '75%'],
+              radius: '40%'
+            }]
+      }
+    }]
   },
   theme: {
     textStyle: {
@@ -116,41 +143,44 @@ var ChartSettings = {
 
 class GaugeChart extends Component {
   render() {
-    const { left, right, center, title, subtitle, subtitlelink } = this.props;
+    const { left, right, center, title, subtitle, subtitlelink, boundaries } = this.props;
+
+    let floor = boundaries.min - boundaries.min % 10;
+    let ceiling = boundaries.max % 10 === 0 ? boundaries.max : boundaries.max  + (10 - boundaries.max % 10);
 
     let options = {
-      ...ChartSettings.defaultOptions,
-      title: {
-        ...CoreHelper.centerTitle,
-        text: title,
-        subtext: subtitle,
-        sublink: subtitlelink
+      baseOption: {
+        ...ChartSettings.defaultOptions.baseOption,
+        title: {
+          ...CoreHelper.centerTitle,
+          text: title,
+          subtext: subtitle,
+          sublink: subtitlelink
+        },
+        series: [{
+          // center
+          ...centerGauge,
+          min: floor,
+          max: ceiling,
+          splitNumber: 10,
+          data: [center]
+        }, {
+          ...rightGauge,
+          min: floor,
+          max: ceiling,
+          splitNumber: 5,
+          data: [right]
+        }, {
+          ...leftGauge,
+          min: floor,
+          max: ceiling,
+          splitNumber: 5,
+          data: [left]
+        }]
       },
-      series: [{
-        // center
-        ...centerGauge,
-        min: 0,
-        max: 220,
-        splitNumber: 11,
-        data: [center]
-      }, {
-        ...rightGauge,
-        min:0,
-        max:7,
-        splitNumber:7,
-        data: [right]
-      }, {
-        ...leftGauge,
-        min:0,
-        max:7,
-        splitNumber:7,
-        data: [left]
-      }]
+      media: ChartSettings.defaultOptions.media
     };
 
-    console.log(options);
-
-    // options = ChartSettings.defaultOptions;
     return <CoreChart {...this.props} options={options}/>
   }
 }
