@@ -1,6 +1,14 @@
-import { FETCH_ATTENDANCE, FETCH_ATTENDANCE_FREQUENCY, FETCH_ATTENDANCE_BY_PARTY,
+import { FETCH_ATTENDANCE_LIST, FETCH_ATTENDANCE, FETCH_ATTENDANCE_FREQUENCY, FETCH_ATTENDANCE_BY_PARTY,
   FETCH_ATTENDANCE_BY_DEPUTY_TYPE, FETCH_ATTENDANCE_AVG } from '../actions';
 
+export function AttendanceListReducer(state = [], action) {
+  switch (action.type) {
+    case FETCH_ATTENDANCE_LIST:
+        return action.payload.data;
+    default:
+      return state;
+  }
+}
 export function AttendanceReducer(state = [], action) {
   switch (action.type) {
     case FETCH_ATTENDANCE:
