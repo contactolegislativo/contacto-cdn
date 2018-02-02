@@ -64,7 +64,7 @@ class DoughnutChart extends Component {
     let initialRatio = (props.width / 3);
     let doughtnutWidth = initialRatio / (2 * props.seriesArray.length);
     let x = initialRatio, y = initialRatio + doughtnutWidth;
-    let seriesArray = props.seriesArray.map(item => {
+    let seriesArray = props.seriesArray.map((item, index) => {
       x -= doughtnutWidth; y -= doughtnutWidth;
 
       if(props.limit - item.total > 0)
@@ -73,7 +73,7 @@ class DoughnutChart extends Component {
       return {
         ...item,
         type:'pie',
-        clockWise: false,
+        clockWise: (index === 0) ? false : true,
         hoverAnimation: false,
         radius : [x, y],
         itemStyle : dataStyle,

@@ -72,8 +72,7 @@ class AttendanceGraph extends Component {
     });
 
     // Define max length of every classification
-    maxLength = seriesArray[0].total > seriesArray[1].total ? seriesArray[0].total : seriesArray[1].total;
-
+    maxLength = this.props.attendanceAvg.max;
     return (
       <div className="chart">
         <h3 className="text-center">Asistencia</h3>
@@ -96,6 +95,7 @@ class AttendanceGraph extends Component {
 export default connect((state) => {
   return {
     attendance: state.attendance,
+    attendanceAvg: state.attendanceAvg,
     attendanceDetails: state.attendanceDetails
   };
 }, { fetchAttendance })(AttendanceGraph);

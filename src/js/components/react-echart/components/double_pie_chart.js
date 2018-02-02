@@ -32,7 +32,7 @@ var ChartSettings = {
       radius: ['35%', '50%'],
       label: {
           normal: {
-              formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+              formatter: '{a|{b}}{abg|}\n{hr|}\n  {c} - {per|{d}%}  ',
               backgroundColor: '#eee',
               borderColor: '#aaa',
               borderWidth: 1,
@@ -86,7 +86,7 @@ var ChartSettings = {
       toolbox: CoreHelper.saveImageToolbox,
       tooltip: {
           trigger: 'item',
-          formatter: "{a} <br/>{b}: {c} ({d}%)"
+          formatter: "{b} <br/>{c} - ({d}%)"
       },
       series: []
     },

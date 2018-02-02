@@ -99,14 +99,14 @@ class AttendanceFrequencyGraph extends Component {
 
     return (
       <div className="chart">
-        <h5 className="text-center mt-2">¿Como es su desempeno con respecto a otros diputados?</h5>
+        <h5 className="text-center mt-2">¿Como es su desempeño con respecto a otros diputados?</h5>
         <DoublePieChart
           width={this.props.width}
           inner={this.inner}
           outer={this.outer}
           title={this.title}
           subtitle={'Fuente Estadistica'}
-          sublink={`https://contactolegislativo.com/metodologia/asistencias`}/>
+          sublink={`/legislatura/LXIII/asistencias`}/>
       </div>
     );
   }

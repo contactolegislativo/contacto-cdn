@@ -10,8 +10,9 @@ $md-size: 255px;
     height: inherit;
     border-radius: 50%;
     overflow: hidden;
+    background-color: #fff;
     &.red {
-      border: 3px solid #c4001d;
+      border: 12px solid #f50057;
     }
     &.white {
       border: 3px solid #fff;
@@ -40,8 +41,10 @@ $md-size: 255px;
   .picture {
     width: $sm-size;
     height: $sm-size;
-    .main img {
-      width: $sm-size;
+    .main {
+      img {
+        width: $sm-size;
+      }
     }
     .secondary {
       width: $sm-size/3;

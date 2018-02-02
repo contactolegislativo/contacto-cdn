@@ -24,7 +24,13 @@ const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 class Register extends Component {
   componentWillMount() {
-    this.elementWidth = document.querySelector('.attendance').offsetWidth;
+    let width = document.querySelector('.attendance').offsetWidth;
+    let height = document.querySelector('body').offsetHeight;
+    this.elementWidth = width < height ? width : height;
+    if(this.elementWidth > 550)
+      this.elementWidth *= .8;
+    else
+      this.elementWidth -= 20;
     this.deputyId = parseInt(document.querySelector('meta[name="deputy-id"]').attributes.value.value);
     this.deputyName = document.querySelector('meta[name="deputy-name"]').attributes.value.value;
     this.deputyParty = document.querySelector('meta[name="deputy-party"]').attributes.value.value;
