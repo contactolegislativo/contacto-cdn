@@ -6,6 +6,7 @@ console.log(path.resolve(__dirname, 'src/js/components'))
 module.exports = {
    entry: {
      main: './src/js/bundles/main.js',
+     deputy: './src/js/bundles/deputy.js',
      attendance: './src/js/bundles/attendance.js'
    },
    output: {

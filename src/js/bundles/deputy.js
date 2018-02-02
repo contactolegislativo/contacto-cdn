@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import promise from 'redux-promise';
 
-import { AttendanceSummaryContainer } from 'attendance';
+import { AttendanceContainer } from 'attendance';
 
 import { AttendanceReducer, AttendanceDetailsReducer, AttendanceFrecuencyReducer,
   AttendanceByPartyReducer, AttendanceByDeputyTypeReducer, AttendanceAvgReducer } from 'attendance/reducers';
@@ -27,18 +27,19 @@ class Register extends Component {
     let width = document.querySelector('.attendance').offsetWidth;
     let height = document.querySelector('body').offsetHeight;
     this.elementWidth = width < height ? width : height;
-    this.elementFullWidth = width - 20;
-    this.elementFullHeight = height * .8;
     if(this.elementWidth > 550)
       this.elementWidth *= .8;
     else
       this.elementWidth -= 20;
+    this.deputyId = parseInt(document.querySelector('meta[name="deputy-id"]').attributes.value.value);
+    this.deputyName = document.querySelector('meta[name="deputy-name"]').attributes.value.value;
+    this.deputyParty = document.querySelector('meta[name="deputy-party"]').attributes.value.value;
   }
 
   render() {
     return (
       <Provider store={createStoreWithMiddleware(rootReducer)}>
-        <AttendanceSummaryContainer width={this.elementFullWidth} height={this.elementFullHeight} />
+        <AttendanceContainer deputyId={this.deputyId} deputyName={this.deputyName} deputyParty={this.deputyParty} width={this.elementWidth} />
       </Provider>
     );
   }
