@@ -27,11 +27,13 @@ class CandleStickChart extends Component {
         },
         formatter: function (params) {
           let data = params[0];
-          return data.name +
-            ': <br/>Min:' + data.data[1] +
-              '<br/>Max:' + data.data[2] +
-              '<br/>Promedio:' + data.data[5] +
-              '<br/>Diputados:' + data.data[6]
+          return data.name + ':' +
+            '<br/>Max:' + data.data[4] +
+            '<br/>Std.Max:' + data.data[2] +
+            '<br/>Std.Min:' + data.data[1] +
+            '<br/>Min:' + data.data[3] +  
+            '<br/>Promedio:' + data.data[5] +
+            '<br/>Diputados:' + data.data[6]
         }
       },
       xAxis: {
@@ -64,10 +66,10 @@ class CandleStickChart extends Component {
           data: props.data,
           itemStyle: {
               normal: {
-                  color: '#f50057',
-                  color0: '#ff4081',
-                  borderColor: '#f50057',
-                  borderColor0: '#ff4081'
+                  color: '#ff4081',
+                  color0: '#f50057',
+                  borderColor: '#ff4081',
+                  borderColor0: '#f50057'
               }
           }
       }, {

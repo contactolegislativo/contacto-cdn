@@ -21,25 +21,6 @@ class AttendanceSummaryComparisonGraph extends Component {
     );
   }
 
-  generateGauge() {
-    let party = this.props.attendanceByParty.find(item => item.party === this.props.deputyParty );
-    this.camara = { value: this.props.attendanceAvg.average, name: 'Camara' };
-    this.deputy = { value: this.props.attendance, name: 'Diputado' };
-    this.party = { value: party.average, name: this.props.deputyParty.toUpperCase() };
-  }
-
-  generateTitle() {
-    this.title = `${this.props.deputyName} tiene `;
-    if(this.deputy.value > this.camara.value)
-      this.title += '\n MEJOR asistencia que el promedio de la CAMARA';
-    else
-      this.title += '\n PEOR asistencia que el promedio de la CAMARA';
-    if(this.deputy.value > this.party.value)
-      this.title += '\n y MEJOR asistencia que el promedio de su PARTIDO';
-    else
-      this.title += '\n y PEOR asistencia que el promedio de su PARTIDO';
-  }
-
   render() {
     // We need to have attedance and attendance frequency to display this chart
     if(this.props.attendanceByParty.length === 0 || this.props.attendanceAvg.average === undefined)
@@ -62,7 +43,6 @@ class AttendanceSummaryComparisonGraph extends Component {
 
     return (
       <div className="chart">
-        <h5 className="text-center mt-2">¿Cual es el desempeño de cada partido en la camara?</h5>
         <CandleStickChart
           data={data}
           line={avg}
