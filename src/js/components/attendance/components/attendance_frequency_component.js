@@ -1,120 +1,94 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchAttendanceFrequency } from '../actions';
-import { DoublePieChart, BarChart, GaugeChart } from 'react-echart';
+import { DoublePieChart, Loader } from 'react-echart';
 
-class AttendanceFrequencyGraph extends Component {
-  componentDidMount() {
-    // Read API
-    this.props.fetchAttendanceFrequency();
-  }
+function createSlice(group) {
+  let label = group.items.length > 1 ?
+    `${group.items[0].quantity} - ${group.items[group.items.length - 1].quantity}` :
+    group.items[0].quantity;
 
-  renderPlaceholder() {
-    return (
-      <div>
-        <h3 className="text-center"></h3>
-        <h5 className="text-center mt-2"></h5>
-        <div style={{"height": this.elementWidth + 'px'}}>
-          <h4>Loading ...</h4>
-        </div>
-      </div>
-    );
-  }
-
-  calculate() {
-    let groups = [], group = { value: 0, items: [] }, groupSize = 50;
-    this.inner = [{ value: 0, name: `< ${this.props.attendance}`}, { value: 0, name: `${this.props.attendance}`, selected: true }, { value: 0, name: `> ${this.props.attendance}`}];
-    this.outer = [];
-
-    function createSlice(group) {
-      let label = group.items.length > 1 ?
-        `${group.items[0].quantity} - ${group.items[group.items.length - 1].quantity}` :
-        group.items[0].quantity;
-
-      return {
-        name: label,
-        value: group.value
-      }
-    }
-
-    this.props.attendanceFrequency.forEach(item => {
-
-      if(item.quantity < this.props.attendance) {
-        this.inner[0].value += item.frequency;
-      } else if(item.quantity === this.props.attendance) {
-        this.inner[1].value += item.frequency;
-        item.selected = true;
-      } else {
-        this.inner[2].value += item.frequency;
-      }
-
-      if(item.frequency > groupSize || item.selected) {
-        //Create slice for whatever is in group
-        if(group.items.length > 0)
-          this.outer.push(createSlice(group));
-        // Create single slice for selected item
-        this.outer.push({
-          name: item.quantity,
-          value: item.frequency
-        });
-
-        group = { value: 0, items: [] };
-      } else if(group.value + item.frequency > groupSize ) {
-        // Create slice
-        this.outer.push(createSlice(group));
-
-        // Reset with new incoming
-        group = { value: item.frequency, items: [item] };
-      } else {
-        //Store
-        group.items.push(item);
-        group.value += item.frequency;
-      }
-    });
-
-    //Create slice for whatever is in group
-    if(group.items.length > 0)
-      this.outer.push(createSlice(group));
-  }
-
-  prepareTitle() {
-    this.title = '';
-    if(this.inner[0].value > this.inner[2].value) {
-      let percentage = this.inner[0].value / (this.inner[0].value + this.inner[1].value + this.inner[2].value);
-      this.title = `${this.props.deputyName} \n tiene mejor asistencia que ${this.inner[0].value} diputados.`;
-    } else {
-      let percentage = this.inner[2].value / (this.inner[0].value + this.inner[1].value + this.inner[2].value);
-      this.title = `${this.inner[2].value} diputados tienen mejor asistencia que \n ${this.props.deputyName}`;
-    }
-  }
-
-  render() {
-    // We need to have attedance and attendance frequency to display thisdeputyAttendance chart
-    if( this.props.attendanceFrequency.length === 0 ) {
-      return this.renderPlaceholder();
-    }
-
-    this.calculate();
-    this.prepareTitle();
-
-    return (
-      <div className="chart">
-        <h5 className="text-center mt-2">¿Como es su desempeño con respecto a otros diputados?</h5>
-        <DoublePieChart
-          width={this.props.width}
-          inner={this.inner}
-          outer={this.outer}
-          title={this.title}
-          subtitle={'Fuente Estadistica'}
-          sublink={`/legislatura/LXIII/asistencias`}/>
-      </div>
-    );
+  return {
+    name: label,
+    value: group.value
   }
 }
 
-export default connect((state) => {
-  return {
-    attendance: state.attendance,
-    attendanceFrequency: state.attendanceFrequency
-  };
-}, { fetchAttendanceFrequency })(AttendanceFrequencyGraph);
+var calculatePie = function(attendance, attendanceFrequency) {
+  let groups = [], group = { value: 0, items: [] }, groupSize = 50;
+  let inner = [{ value: 0, name: `< ${attendance}`}, { value: 0, name: `${attendance}`, selected: true }, { value: 0, name: `> ${attendance}`}];
+  let outer = [];
+
+  attendanceFrequency.forEach(item => {
+    if(item.quantity < attendance) {
+      inner[0].value += item.frequency;
+    } else if(item.quantity === attendance) {
+      inner[1].value += item.frequency;
+      item.selected = true;
+    } else {
+      inner[2].value += item.frequency;
+    }
+
+    if(item.frequency > groupSize || item.selected) {
+      //Create slice for whatever is in group
+      if(group.items.length > 0)
+        outer.push(createSlice(group));
+      // Create single slice for selected item
+      outer.push({
+        name: item.quantity,
+        value: item.frequency
+      });
+
+      group = { value: 0, items: [] };
+    } else if(group.value + item.frequency > groupSize ) {
+      // Create slice
+      outer.push(createSlice(group));
+
+      // Reset with new incoming
+      group = { value: item.frequency, items: [item] };
+    } else {
+      //Store
+      group.items.push(item);
+      group.value += item.frequency;
+    }
+  });
+
+  //Create slice for whatever is in group
+  if(group.items.length > 0)
+    outer.push(createSlice(group));
+
+  return { inner, outer };
+}
+
+var prepareTitle = function(inner, deputyName) {
+  let title = '';
+  if(inner[0].value > inner[2].value) {
+    let percentage = inner[0].value / (inner[0].value + inner[1].value + inner[2].value);
+    title = `${deputyName} \n tiene mejor asistencia que ${inner[0].value} diputados.`;
+  } else {
+    let percentage = inner[2].value / (inner[0].value + inner[1].value + inner[2].value);
+    title = `${inner[2].value} diputados tienen mejor asistencia que \n ${deputyName}`;
+  }
+  return title;
+}
+
+export default function(props) {
+  // We need to have attedance and attendance frequency to display thisdeputyAttendance chart
+  if( typeof props.attendance !== 'number' || props.attendanceFrequency.length === 0 )
+    return <Loader width={props.width}/>;
+
+  let pie = calculatePie(props.attendance, props.attendanceFrequency);
+  let title = prepareTitle(pie.inner, props.deputyName);
+
+  return (
+    <div className="chart">
+      <h5 className="text-center mt-2">¿Como es su desempeño con respecto a otros diputados?</h5>
+      <DoublePieChart
+        width={props.width}
+        inner={pie.inner}
+        outer={pie.outer}
+        title={title}
+        subtitle={'Fuente Estadistica'}
+        sublink={`/legislatura/LXIII/asistencias`}/>
+    </div>
+  );
+}
