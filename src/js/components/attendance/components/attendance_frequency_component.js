@@ -90,7 +90,7 @@ class AttendanceFrequencyGraph extends Component {
 
   render() {
     // We need to have attedance and attendance frequency to display thisdeputyAttendance chart
-    if( this.props.attendanceFrequency.length === 0 || this.props.attendanceDetails.length === 0 ) {
+    if( this.props.attendanceFrequency.length === 0 ) {
       return this.renderPlaceholder();
     }
 
@@ -115,7 +115,6 @@ class AttendanceFrequencyGraph extends Component {
 export default connect((state) => {
   return {
     attendance: state.attendance,
-    attendanceDetails: state.attendanceDetails,
     attendanceFrequency: state.attendanceFrequency
   };
 }, { fetchAttendanceFrequency })(AttendanceFrequencyGraph);

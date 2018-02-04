@@ -7,7 +7,7 @@ import promise from 'redux-promise';
 import { AttendanceSummaryContainer } from 'attendance';
 
 import { AttendanceReducer, AttendanceListReducer, AttendanceDetailsReducer, AttendanceFrecuencyReducer,
-  AttendanceByPartyReducer, AttendanceByDeputyTypeReducer, AttendanceAvgReducer } from 'attendance/reducers';
+  AttendanceByPartyReducer, AttendanceByStateReducer, AttendanceByDeputyTypeReducer, AttendanceAvgReducer } from 'attendance/reducers';
 import {combineReducers} from 'redux';
 import { reducer as formReducer } from 'redux-form';
 
@@ -17,6 +17,7 @@ const rootReducer = combineReducers({
   attendanceDetails: AttendanceDetailsReducer,
   attendanceFrequency: AttendanceFrecuencyReducer,
   attendanceByParty: AttendanceByPartyReducer,
+  attendanceByState: AttendanceByStateReducer,
   attendanceByDeputyType: AttendanceByDeputyTypeReducer,
   attendanceAvg: AttendanceAvgReducer,
 });

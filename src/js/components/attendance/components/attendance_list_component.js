@@ -12,11 +12,22 @@ var normalize = function(r) {
 };
 
 class AttendanceList extends Component {
-  componentDidMount() {
+  componentWillMount() {
     // Read API
     this.props.fetchAttendanceList();
+  }
 
-    //$('.table').dataTable();
+  componentDidUpdate() {
+    let $table = $('.table');
+    $('.table').dataTable({
+      "language": {
+        "lengthMenu": "Mostrando _MENU_ diputados por pagina",
+        "zeroRecords": "No se encontro",
+        "info": "Mostrando _PAGE_ de _PAGES_",
+        "infoEmpty": "Ningun diputado disponible",
+        "infoFiltered": "(filtrado de un total de _MAX_ diputados)"
+      }
+    });
   }
 
   renderPlaceholder() {
@@ -33,7 +44,7 @@ class AttendanceList extends Component {
 
   renderItems() {
     return this.props.attendanceList.map(item => {
-      let path = normalize(item.state).replace(' ','-').toLowerCase();
+      let path = normalize(item.state).replace(/ /g,'-').toLowerCase();
       let url = '';
       if(item.type === 'Representación proporcional') {
         url = `/legislatura/LXIII/diputado/${path}/circunscripcion/${item.district}/${item.id}`;

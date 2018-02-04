@@ -4,6 +4,7 @@ export const FETCH_ATTENDANCE = 'fetch_attendance';
 export const FETCH_ATTENDANCE_LIST = 'fetch_attendance_list';
 export const FETCH_ATTENDANCE_FREQUENCY = 'fetch_attendance_frequency';
 export const FETCH_ATTENDANCE_BY_PARTY = 'fetch_attendance_by_party';
+export const FETCH_ATTENDANCE_BY_STATE = 'fetch_attendance_by_state';
 export const FETCH_ATTENDANCE_BY_DEPUTY_TYPE = 'fetch_attendance_by_deputy_type';
 export const FETCH_ATTENDANCE_AVG = 'fetch_attendance_avg';
 
@@ -35,6 +36,14 @@ export function fetchAttendanceByParty() {
   const request = axios.get('/api/legislature/LXIII/attendance/by_party');
   return {
     type: FETCH_ATTENDANCE_BY_PARTY,
+    payload: request
+  }
+}
+
+export function fetchAttendanceByState() {
+  const request = axios.get('/api/legislature/LXIII/attendance/by_state');
+  return {
+    type: FETCH_ATTENDANCE_BY_STATE,
     payload: request
   }
 }
