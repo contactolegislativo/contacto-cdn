@@ -3,6 +3,7 @@
 @import 'partials/deputy';
 @import 'partials/picture';
 @import 'partials/stack';
+@import 'partials/loader';
 
 $primary-text-color: #fff;
 $primary-ligth-text-color: #757575;
@@ -34,14 +35,15 @@ $dark-primary-color: #f50057;
 
 /* Optional: Makes the sample page fill the window. */
 html, body {
+  background-color: #F5F5F5!important;
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
 .chart {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 
 
