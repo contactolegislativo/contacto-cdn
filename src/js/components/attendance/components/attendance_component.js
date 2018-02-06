@@ -31,7 +31,7 @@ let complexFormatter = function(params){
 }
 
 export default function(props) {
-  if(props.attendanceDetails.length === 0)
+  if(props.attendanceDetails.length === 0 ||  !props.attendance)
     return <Loader width={props.width}/>;
 
   let seriesArray = [{ name: 'Asistencias', data: [], total: 0 }, {name: 'Faltas', data: [], total: 0}];

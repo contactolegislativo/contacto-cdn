@@ -11,6 +11,7 @@ var generateTitle = function(deputyName, gauges) {
     title += '\n y MEJOR asistencia que el promedio de su PARTIDO';
   else
     title += '\n y PEOR asistencia que el promedio de su PARTIDO';
+  return title;
 }
 
 export default function(props) {

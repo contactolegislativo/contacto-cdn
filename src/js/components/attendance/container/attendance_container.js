@@ -16,7 +16,7 @@ class AttendanceContainer extends Component {
       <div>
         <AttendanceGraph
           max={this.props.attendanceAvg.max}
-          attedance={this.props.attendance}
+          attendance={this.props.attendance}
           attendanceDetails={this.props.attendanceDetails}
           deputyId={this.props.deputyId}
           deputyName={this.props.deputyName}
