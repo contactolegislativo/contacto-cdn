@@ -38,8 +38,8 @@ class CoreChart extends Component {
   render() {
     // render frame div for chart component
     return <div className="core" style = {{
-          'height': this.props.height ? this.props.height : this.props.width,
-          'width': this.props.width
+          'height': this.props.frame.height,
+          'width': this.props.frame.width
         }}/>;
   }
 }

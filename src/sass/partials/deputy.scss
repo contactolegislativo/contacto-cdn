@@ -1,4 +1,4 @@
-.d-card {
+.d-card, .vpanel {
   text-align: center;
   .header {
     background-color: #f50057;
@@ -31,6 +31,48 @@
   }
 }
 
+.grade {
+  .circle-btn {
+    text-align: center;
+    padding: .5rem;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 1rem;
+    background-color: #fff;
+    color: #f50057;
+    width: 3rem;
+    height: 3rem;
+    a {
+      color: #f50057;
+      i {
+        font-size: 20px;
+        padding-top: 5px;
+      }
+    }
+  }
+}
+
+.party-budget {
+  margin: 0 auto;
+  width: 250px;
+  position: relative;
+  margin-bottom: 6rem;
+}
+
+.party-budget .party {
+  width: 200px;
+}
+
+
+.party-budget .budget {
+  position: absolute;
+  width: 40%;
+  max-width: 150px;
+  top: 65%;
+  left: 70%;
+}
+
+
 .main-section, .secondary-section {
   background-color: #F5F5F5;
 }
@@ -41,18 +83,4 @@
       margin-top: 150px;
     }
   }
-
-  // .main-section {
-  //   position: fixed;
-  //   width: 50%;
-  //   bottom: 0;
-  //   top: 0;
-  //   padding-top: 3.5rem;
-  // }
-  //
-  // .secondary-section {
-  //   margin-left: 50%;
-  //   width: 50%;
-  // }
-
 }

@@ -27,19 +27,39 @@ class Register extends Component {
     let width = document.querySelector('.attendance').offsetWidth;
     let height = document.querySelector('body').offsetHeight;
     this.elementWidth = width < height ? width : height;
-    if(this.elementWidth > 550)
-      this.elementWidth *= .8;
-    else
-      this.elementWidth -= 20;
-    this.deputyId = parseInt(document.querySelector('meta[name="deputy-id"]').attributes.value.value);
-    this.deputyName = document.querySelector('meta[name="deputy-name"]').attributes.value.value;
-    this.deputyParty = document.querySelector('meta[name="deputy-party"]').attributes.value.value;
+
+    if(width > height) { /* Landscape */
+      if(height < 500) /* min-height:*/ 
+        height = 600;
+      this.frame = { width: height, height: height };
+    } else { /* Portrait */
+      this.frame = { width: width, height: height * .8 };
+      if(width < 500 ) { /* Mobile */
+        this.frame.width -= 15;
+      } else { /* Wide */
+        this.frame.width *= .8;
+      }
+    }
+
+
+
+    this.deputy = {
+      id: parseInt(document.querySelector('meta[name="deputy-id"]').attributes.value.value),
+      name: document.querySelector('meta[name="deputy-name"]').attributes.value.value,
+      picture: document.querySelector('meta[name="deputy-picture"]').attributes.value.value,
+      party: document.querySelector('meta[name="deputy-party"]').attributes.value.value,
+      email: document.querySelector('meta[name="deputy-email"]').attributes.value.value,
+      facebook: document.querySelector('meta[name="deputy-facebook"]').attributes.value.value,
+      twitter: document.querySelector('meta[name="deputy-twitter"]').attributes.value.value
+    }
   }
 
   render() {
     return (
       <Provider store={createStoreWithMiddleware(rootReducer)}>
-        <AttendanceContainer deputyId={this.deputyId} deputyName={this.deputyName} deputyParty={this.deputyParty} width={this.elementWidth} />
+        <AttendanceContainer
+          deputy={this.deputy}
+          frame={this.frame} />
       </Provider>
     );
   }

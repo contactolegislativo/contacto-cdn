@@ -61,7 +61,7 @@ let option = {
 
 class DoughnutChart extends Component {
   parseChartOptions(props) {
-    let initialRatio = (props.width / 3);
+    let initialRatio = (props.frame.width / 3);
     let doughtnutWidth = initialRatio / (2 * props.seriesArray.length);
     let x = initialRatio, y = initialRatio + doughtnutWidth;
     let seriesArray = props.seriesArray.map((item, index) => {

@@ -32,7 +32,7 @@ let complexFormatter = function(params){
 
 export default function(props) {
   if(props.attendanceDetails.length === 0 ||  !props.attendance)
-    return <Loader width={props.width}/>;
+    return <Loader width={props.frame.width}/>;
 
   let seriesArray = [{ name: 'Asistencias', data: [], total: 0 }, {name: 'Faltas', data: [], total: 0}];
 
@@ -62,7 +62,7 @@ export default function(props) {
          labels={['A','AO','PM','IV','AC','IJ','I','NA']}
          simpleFormatter={simpleFormatter}
          complexFormatter={complexFormatter}
-         width={props.width}
+         frame={props.frame}
          title={`${props.deputyName} \n ha tenido ${props.attendance} asistencias`}
          subtitle={'Fuente diputados.gob.mx'}
          sublink={`http://sitl.diputados.gob.mx/LXIII_leg/asistencias_diputados_xperiodonplxiii.php?dipt=${props.deputyId}`}/>

@@ -120,15 +120,16 @@ var ChartSettings = {
       option: {
         series: [{
               endAngle:45,
-              radius: '50%'
+              radius: '50%',
+              center: ['50%','45%']
             }, {
               startAngle: 225,
               endAngle: 45,
-              center: ['25%', '25%'],
+              center: ['25%', '20%'],
               radius: '40%'
             }, {
               endAngle: 45,
-              center: ['75%', '75%'],
+              center: ['75%', '70%'],
               radius: '40%'
             }]
       }
