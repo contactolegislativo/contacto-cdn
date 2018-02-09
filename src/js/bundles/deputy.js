@@ -29,7 +29,7 @@ class Register extends Component {
     this.elementWidth = width < height ? width : height;
 
     if(width > height) { /* Landscape */
-      if(height < 500) /* min-height:*/ 
+      if(height < 500) /* min-height:*/
         height = 600;
       this.frame = { width: height, height: height };
     } else { /* Portrait */
@@ -40,8 +40,6 @@ class Register extends Component {
         this.frame.width *= .8;
       }
     }
-
-
 
     this.deputy = {
       id: parseInt(document.querySelector('meta[name="deputy-id"]').attributes.value.value),

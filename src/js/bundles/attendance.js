@@ -28,19 +28,26 @@ class Register extends Component {
   componentWillMount() {
     let width = document.querySelector('.attendance').offsetWidth;
     let height = document.querySelector('body').offsetHeight;
-    this.elementWidth = width < height ? width : height;
-    this.elementFullWidth = width - 20;
-    this.elementFullHeight = height * .8;
-    if(this.elementWidth > 550)
-      this.elementWidth *= .8;
-    else
-      this.elementWidth -= 20;
+
+    if(width > height) { /* Landscape */
+      if(height < 500) /* min-height:*/
+        height = 600;
+      this.frame = { width: height, height: height };
+    } else { /* Portrait */
+      this.frame = { width: width, height: height * .8 };
+      if(width < 500 ) { /* Mobile */
+        this.frame.width -= 15;
+      } else { /* Wide */
+        this.frame.width *= .8;
+      }
+    }
+
   }
 
   render() {
     return (
       <Provider store={createStoreWithMiddleware(rootReducer)}>
-        <AttendanceSummaryContainer width={this.elementFullWidth} height={this.elementFullHeight} />
+        <AttendanceSummaryContainer frame={this.frame} />
       </Provider>
     );
   }

@@ -4,9 +4,9 @@ import { AttendanceSummaryComparisonByStateGraph, AttendanceSummaryComparisonGra
 export default function(props) {
   return (
     <div>
-      <AttendanceSummaryComparisonGraph width={props.width} height={props.height}/>
-      <AttendanceSummaryComparisonByStateGraph width={props.width} height={props.height}/>
-      <AttendanceList/>
+      <AttendanceSummaryComparisonGraph frame={props.frame}/>
+      <AttendanceSummaryComparisonByStateGraph frame={props.frame}/>
+      <AttendanceList frame={props.frame}/>
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchAttendanceList } from '../actions';
+import { Loader } from 'react-echart';
 
 var normalize = function(r) {
   r = r.replace(new RegExp(/[àáâãäå]/g),"a");
@@ -30,18 +31,6 @@ class AttendanceList extends Component {
     });
   }
 
-  renderPlaceholder() {
-    return (
-      <div>
-        <h3 className="text-center"></h3>
-        <h5 className="text-center mt-2"></h5>
-        <div style={{"height": this.props.width + 'px'}}>
-          <h4>Loading ...</h4>
-        </div>
-      </div>
-    );
-  }
-
   renderItems() {
     return this.props.attendanceList.map(item => {
       let path = normalize(item.state).replace(/ /g,'-').toLowerCase();
@@ -54,16 +43,20 @@ class AttendanceList extends Component {
 
       return (
         <tr key={item.id}>
-          <td>{item.id}</td>
-          <td>{item.state}</td>
-          <td>{item.district}</td>
-          <td>{item.type}</td>
+          <td className="d-none d-sm-block">{item.id}</td>
+          <td className="d-none d-sm-block">{item.state}</td>
+          <td className="d-none d-sm-block">{item.district}</td>
+          <td className="d-none d-sm-block">{item.type}</td>
           <td help={item.attendanceEntity}>
             <a href={url} target="_blank">
               {item.displayName}
             </a>
+            (<span>{item.party.toUpperCase()}</span>)
+            <span className="d-block d-sm-none">
+              {item.state} | D.{item.district}
+            </span>
           </td>
-          <td>{item.party}</td>
+          <td className="d-none d-sm-block">{item.party.toUpperCase()}</td>
           <td>{item.entries}</td>
         </tr>
       );
@@ -72,20 +65,20 @@ class AttendanceList extends Component {
 
   render() {
     if(this.props.attendanceList.length === 0)
-      return this.renderPlaceholder();
+      return <Loader width={this.props.frame.width}/>;
 
     return (
-      <div className="pl-5 pr-5">
+      <div className="table-container">
         <table className="table table-sm table-striped">
           <thead className="thead-dark">
             <tr>
-              <th>#</th>
-              <th>Estado</th>
-              <th>Distrito</th>
-              <th>Tipo</th>
+              <th className="d-none d-sm-block">#</th>
+              <th className="d-none d-sm-block">Estado</th>
+              <th className="d-none d-sm-block">Distrito</th>
+              <th className="d-none d-sm-block">Tipo</th>
               <th>Nombre</th>
-              <th>Partido</th>
-              <th>Asistencias</th>
+              <th className="d-none d-sm-block">Partido</th>
+              <th>#A</th>
             </tr>
           </thead>
           <tbody>

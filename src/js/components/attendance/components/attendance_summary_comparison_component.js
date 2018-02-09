@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchAttendanceAvg, fetchAttendanceByParty } from '../actions';
-import { CandleStickChart } from 'react-echart';
+import { CandleStickChart, Loader } from 'react-echart';
 
 class AttendanceSummaryComparisonGraph extends Component {
   componentDidMount() {
@@ -9,22 +9,10 @@ class AttendanceSummaryComparisonGraph extends Component {
     this.props.fetchAttendanceByParty();
   }
 
-  renderPlaceholder() {
-    return (
-      <div>
-        <h3 className="text-center"></h3>
-        <h5 className="text-center mt-2"></h5>
-        <div style={{"height": this.props.width + 'px'}}>
-          <h4>Loading ...</h4>
-        </div>
-      </div>
-    );
-  }
-
   render() {
     // We need to have attedance and attendance frequency to display this chart
     if(this.props.attendanceByParty.length === 0 || this.props.attendanceAvg.average === undefined)
-      return this.renderPlaceholder();
+      return <Loader width={this.props.frame.width}/>;
 
     let labels = [], avg = [];
 
@@ -48,9 +36,8 @@ class AttendanceSummaryComparisonGraph extends Component {
           line={avg}
           labels={labels}
           boundaries={this.props.attendanceAvg}
-          width={this.props.width}
-          height={this.props.height}
-          title={'¿Cual es el desempeño de cada partido en la camara?'}
+          frame={this.props.frame}
+          title={'¿Cual es el desempeño \nde cada partido en la camara?'}
           subtitle={'Fuente Estadistica'}
           subtitlelink={`/legislatura/LXIII/asistencias`}/>
       </div>
