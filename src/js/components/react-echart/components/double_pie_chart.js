@@ -92,9 +92,25 @@ var ChartSettings = {
     },
     media: [{
       query: {
-          maxWidth: 600
+          maxWidth: 360
       },
       option: {
+        title: {
+          textStyle: {
+            fontSize: 12
+          }
+        }
+      }
+    },{
+      query: {
+          maxWidth: 640
+      },
+      option: {
+        title: {
+          textStyle: {
+            fontSize: 14
+          }
+        },
         series: [{
             center: ['50%', '45%'],
             radius: [0, '40%']

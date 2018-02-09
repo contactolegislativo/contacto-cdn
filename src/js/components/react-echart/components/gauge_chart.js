@@ -115,9 +115,25 @@ var ChartSettings = {
     },
     media: [{
       query: {
-          maxWidth: 600
+          maxWidth: 360
       },
       option: {
+        title: {
+          textStyle: {
+            fontSize: 12
+          }
+        }
+      }
+    },{
+      query: {
+          maxWidth: 640
+      },
+      option: {
+        title: {
+          textStyle: {
+            fontSize: 14
+          }
+        },
         series: [{
               endAngle:45,
               radius: '50%',

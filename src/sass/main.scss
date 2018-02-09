@@ -85,8 +85,12 @@ html, body {
   margin-bottom: 3rem;
 }
 
-@media screen and (min-width: 360px) {
+@media screen and (max-width: 360px) {
   h3 a {
     display: block;
+  }
+
+  .navbar-brand > span {
+    font-size: 16px;
   }
 }

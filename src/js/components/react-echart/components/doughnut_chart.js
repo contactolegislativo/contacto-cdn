@@ -102,19 +102,44 @@ class DoughnutChart extends Component {
     option.series = seriesArray;
 
     return {
-      ...option,
-      title: {
-        ...CoreHelper.centerTitle,
-        text: props.title,
-        subtext: props.subtitle,
-        sublink: props.sublink
+      baseOption: {
+        ...option,
+        title: {
+          ...CoreHelper.centerTitle,
+          text: props.title,
+          subtext: props.subtitle,
+          sublink: props.sublink
+        },
+        legend: {
+          ...CoreHelper.horizontalScrollLegend,
+          data: props.labels,
+          top: 55,
+          formatter: props.simpleFormatter
+        }
       },
-      legend: {
-        ...CoreHelper.horizontalScrollLegend,
-        data: props.labels,
-        top: 55,
-        formatter: props.simpleFormatter
-      }
+      media: [{
+        query: {
+            maxWidth: 360
+        },
+        option: {
+          title: {
+            textStyle: {
+              fontSize: 12
+            }
+          }
+        }
+      }, {
+        query: {
+            maxWidth: 640
+        },
+        option: {
+          title: {
+            textStyle: {
+              fontSize: 14
+            }
+          }
+        }
+      }]
     };
   }
 
