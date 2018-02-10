@@ -10,7 +10,7 @@ export default function(props) {
     <div className="chart">
       <div className="grade full-panel text-center">
         <div className="center-content">
-          <h3 className="pt-5 mb-3">Tu diputado tiene {(props.percentage/20).toFixed(2)} en asistencia</h3>
+          <h3 className="pt-5 mb-3 d-none d-sm-block">Tu diputado tiene {(props.percentage/20).toFixed(2)} en asistencia</h3>
           <h1 className="h2 mb-3" >{ props.deputy.name }</h1>
           <div className="picture">
             <div className="main yellow">
