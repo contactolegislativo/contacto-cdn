@@ -4,6 +4,16 @@ import echarts from 'echarts/dist/echarts-en.min.js';
 import CoreChart from './core_chart';
 import CoreHelper from './core_helper';
 
+let gradientPalette = ['#F81D46', '#F81E3B', '#F82031', '#F72126', '#F72922', '#F73523', '#F74224', '#F74F25', '#F65B27', '#F66728', '#F67329', '#F67F2A', '#F68B2B', '#F5962D', '#F5A22E', '#F5AD2F', '#F5B830', '#F5C331', '#F4CE32', '#F4D934', '#F4E335', '#F4EE36', '#F0F437', '#E5F438', '#DBF339', '#D1F33B', '#C7F33C', '#BDF33D', '#B3F33E', '#A9F23F', '#A0F240', '#97F241', '#8DF243', '#84F244', '#7CF145', '#73F146', '#6AF147', '#62F148', '#5AF149', '#52F04A'];
+
+var makeGradient = function(number) {
+  let iterator = Math.floor(gradientPalette.length / (number + 1));
+  let r =  gradientPalette.filter((item, index) => {
+    return index % iterator === 0;
+  });
+  return r.reverse();
+}
+
 var ChartSettings = {
   pie: {
       name:'Serie A',
@@ -69,6 +79,7 @@ var ChartSettings = {
               }
           }
       },
+      color: gradientPalette.reverse(),
       data:[
           {value:335, name:'A'},
           {value:310, name:'E'},
@@ -120,7 +131,7 @@ var ChartSettings = {
             label: {
               normal: {
                 position: 'inner',
-                formatter: '{b} \n {c} \n {d}%',
+                formatter: '{b} \n ({d}%)',
                 backgroundColor: 'transparent',
                 borderColor: 'transparent',
                 borderWidth: 0,
@@ -161,10 +172,12 @@ class DoublePieChart extends Component {
         series: [
           {
             ...ChartSettings.pie,
+            color: makeGradient(this.props.inner.length),
             data: this.props.inner
           },
           {
             ...ChartSettings.doughtnut,
+            color: makeGradient(this.props.outer.length),
             data: this.props.outer
           }
         ]

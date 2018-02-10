@@ -137,16 +137,28 @@ var ChartSettings = {
         series: [{
               endAngle:45,
               radius: '50%',
-              center: ['50%','45%']
+              center: ['50%','45%'],
+              splitNumber: 5,
+              detail: {
+                fontSize: 18
+              }
             }, {
               startAngle: 225,
               endAngle: 45,
               center: ['25%', '20%'],
-              radius: '40%'
+              radius: '40%',
+              splitNumber: 3,
+              detail: {
+                fontSize: 16
+              }
             }, {
               endAngle: 45,
               center: ['75%', '70%'],
-              radius: '40%'
+              radius: '40%',
+              splitNumber: 3,
+              detail: {
+                fontSize: 16
+              }
             }]
       }
     }]
