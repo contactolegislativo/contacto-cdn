@@ -43,10 +43,10 @@ class AttendanceList extends Component {
 
       return (
         <tr key={item.id}>
-          <td className="d-none d-sm-block">{item.id}</td>
-          <td className="d-none d-sm-block">{item.state}</td>
-          <td className="d-none d-sm-block">{item.district}</td>
-          <td className="d-none d-sm-block">{item.type}</td>
+          <td className="d-none d-sm-table-cell">{item.id}</td>
+          <td className="d-none d-sm-table-cell">{item.state}</td>
+          <td className="d-none d-sm-table-cell">{item.district}</td>
+          <td className="d-none d-sm-table-cell">{item.type}</td>
           <td help={item.attendanceEntity}>
             <a href={url} target="_blank">
               {item.displayName}
@@ -56,7 +56,7 @@ class AttendanceList extends Component {
               {item.state} | D.{item.district}
             </span>
           </td>
-          <td className="d-none d-sm-block">{item.party.toUpperCase()}</td>
+          <td className="d-none d-sm-table-cell">{item.party.toUpperCase()}</td>
           <td>{item.entries}</td>
         </tr>
       );
@@ -72,12 +72,12 @@ class AttendanceList extends Component {
         <table className="table table-sm table-striped">
           <thead className="thead-dark">
             <tr>
-              <th className="d-none d-sm-block">#</th>
-              <th className="d-none d-sm-block">Estado</th>
-              <th className="d-none d-sm-block">Distrito</th>
-              <th className="d-none d-sm-block">Tipo</th>
+              <th className="d-none d-sm-table-cell">#</th>
+              <th className="d-none d-sm-table-cell">Estado</th>
+              <th className="d-none d-sm-table-cell">Distrito</th>
+              <th className="d-none d-sm-table-cell">Tipo</th>
               <th>Nombre</th>
-              <th className="d-none d-sm-block">Partido</th>
+              <th className="d-none d-sm-table-cell">Partido</th>
               <th>#A</th>
             </tr>
           </thead>

@@ -85,6 +85,11 @@ html, body {
   margin-bottom: 3rem;
 }
 
+.table-container {
+  padding: 0 15px;
+  min-height: 600px;
+}
+
 @media screen and (max-width: 360px) {
   h3 a {
     display: block;
@@ -92,5 +97,15 @@ html, body {
 
   .navbar-brand > span {
     font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .d-sm-table-cell {
+    display: table-cell !important;
+  }
+
+  .table-container {
+    padding: 0 5px!important;
   }
 }
