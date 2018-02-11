@@ -52,7 +52,7 @@ class AttendanceList extends Component {
               {item.displayName}
             </a>
             &nbsp;
-            <span className="text-muted">({item.party.toUpperCase()})</span>
+            <span className="d-inline d-sm-none text-muted">({item.party.toUpperCase()})</span>
             <span className="d-block d-sm-none text-muted">
               {item.state} | D.{item.district}
             </span>
