@@ -53,7 +53,8 @@ var clasifyAttendanceFrecuency = function(attendance, groupRatio, attendanceFreq
     inner,
     outer,
     above: inner[2].value,
-    below: inner[0].value + inner[1].value
+    below: inner[0].value + inner[1].value,
+    total: attendanceFrequency[attendanceFrequency.length - 1].cumulative_frequency
   };
 }
 
@@ -69,7 +70,7 @@ class AttendanceContainer extends Component {
     let frequency = {}, percentage = 0;
     if(this.props.attendance && this.props.attendanceFrequency.length !== 0 && this.props.attendanceAvg ) {
       frequency = clasifyAttendanceFrecuency(this.props.attendance, 55, this.props.attendanceFrequency)
-      percentage = (frequency.below * 100) / this.props.attendanceFrequency[this.props.attendanceFrequency.length - 1].cumulative_frequency;
+      percentage = (frequency.below * 100) / frequency.total;
     }
 
     return (

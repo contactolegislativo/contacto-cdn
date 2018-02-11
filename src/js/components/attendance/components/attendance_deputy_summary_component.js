@@ -1,7 +1,5 @@
 import React from 'react';
 
-// <img className="secondary" src="<%- `http://${host}/assets/img/${deputy.party}.png` %>"/>
-
 export default function(props) {
   let twitter = `https://twitter.com/intent/tweet?screen_name=&text=Diputado%20@${props.deputy.twitter.replace('https://twitter.com/', '')}%20usted%20me%20representa,%20y%20estoy%20al%20pendiente%20de%20su%20desempe%C3%B1o%20en%20%23contactoLegislativo%20contactolegislativo.com`;
   let mail = `mailto:${props.deputy.email}?subject=Tu me representas y estoy al pendiente de su desempeño en %23contactoLegislativo&body=Dip.${props.deputy.name}, tu me representas y estoy al pendiente de su desempeño en %23contactoLegislativo (http://contactolegislativo.com)`;
@@ -10,7 +8,6 @@ export default function(props) {
     <div className="chart">
       <div className="grade full-panel text-center">
         <div className="center-content">
-          <h3 className="pt-5 mb-3 d-none d-sm-block">Tu diputado tiene {(props.percentage/20).toFixed(2)} en asistencia</h3>
           <h1 className="h2 mb-3" >{ props.deputy.name }</h1>
           <div className="picture">
             <div className="main yellow">
