@@ -48,6 +48,11 @@ $md-size: 255px;
       img {
         width: $sm-size;
       }
+      &.red, &.yellow {
+        img {
+          width: $sm-size - 24;
+        }
+      }
     }
     .secondary {
       width: $sm-size/3;
@@ -59,8 +64,15 @@ $md-size: 255px;
   .picture {
     width: $md-size;
     height: $md-size;
-    .main img {
-      width: $md-size;
+    .main  {
+      img {
+        width: $md-size;
+      }
+      &.red, &.yellow {
+        img {
+          width: $md-size - 24;
+        }
+      }
     }
     .secondary {
       width: $md-size/3;
