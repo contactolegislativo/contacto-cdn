@@ -32,11 +32,11 @@ class Register extends Component {
     if(width > height) { /* Landscape */
       if(height < 500) /* min-height:*/
         height = 600;
-      this.frame = { width: height, height: height };
+      this.frame = { width: width - 26, height };
     } else { /* Portrait */
       this.frame = { width: width, height: height * .8 };
       if(width < 500 ) { /* Mobile */
-        this.frame.width -= 15;
+        this.frame.width -= 25;
       } else { /* Wide */
         this.frame.width *= .8;
       }
