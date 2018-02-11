@@ -123,30 +123,30 @@ var ChartSettings = {
           }
         },
         series: [{
+          center: ['50%', '45%'],
+          radius: ['50%', '80%'],
+          label: {
+            normal: {
+              position: 'inner',
+              formatter: '{b} \n ({d}%)',
+              backgroundColor: 'transparent',
+              borderColor: 'transparent',
+              borderWidth: 0,
+              borderRadius: 0,
+              rich: {}
+            }
+          },
+          labelLine: {
+            normal: {
+              show: false
+            },
+            emphasis: {
+              show: true
+            }
+          }
+        }, {
             center: ['50%', '45%'],
             radius: [0, '40%']
-          }, {
-            center: ['50%', '45%'],
-            radius: ['50%', '80%'],
-            label: {
-              normal: {
-                position: 'inner',
-                formatter: '{b} \n ({d}%)',
-                backgroundColor: 'transparent',
-                borderColor: 'transparent',
-                borderWidth: 0,
-                borderRadius: 0,
-                rich: {}
-              }
-            },
-            labelLine: {
-              normal: {
-                show: false
-              },
-              emphasis: {
-                show: true
-              }
-            }
           }]
       }
     }]
