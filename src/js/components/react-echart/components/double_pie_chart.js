@@ -160,6 +160,10 @@ var ChartSettings = {
 
 class DoublePieChart extends Component {
   render() {
+
+    if(this.props.inner[0].value === 0) delete this.props.inner[0];
+    if(this.props.inner[2].value === 0) delete this.props.inner[2];
+
     let options = {
       baseOption: {
         ...ChartSettings.defaultOptions.options,
@@ -169,18 +173,15 @@ class DoublePieChart extends Component {
           subtext: this.props.subtitle || '',
           sublink: this.props.sublink || ''
         },
-        series: [
-          {
-            ...ChartSettings.pie,
-            color: makeGradient(this.props.inner.length),
-            data: this.props.inner
-          },
-          {
-            ...ChartSettings.doughtnut,
-            color: makeGradient(this.props.outer.length),
-            data: this.props.outer
-          }
-        ]
+        series: [{
+          ...ChartSettings.doughtnut,
+          color: makeGradient(this.props.outer.length),
+          data: this.props.outer
+        }, {
+          ...ChartSettings.pie,
+          color: makeGradient(this.props.inner.length),
+          data: this.props.inner
+        }]
       },
       media: ChartSettings.defaultOptions.media
     };
