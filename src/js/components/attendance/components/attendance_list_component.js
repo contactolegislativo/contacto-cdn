@@ -51,8 +51,9 @@ class AttendanceList extends Component {
             <a href={url} target="_blank">
               {item.displayName}
             </a>
-            (<span>{item.party.toUpperCase()}</span>)
-            <span className="d-block d-sm-none">
+            &nbsp;
+            <span className="text-muted">({item.party.toUpperCase()})</span>
+            <span className="d-block d-sm-none text-muted">
               {item.state} | D.{item.district}
             </span>
           </td>
