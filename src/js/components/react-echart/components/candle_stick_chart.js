@@ -106,7 +106,21 @@ class CandleStickChart extends Component {
               textStyle: {
                 fontSize: 14
               }
-            }
+            },
+            dataZoom: [
+                {
+                    type: 'inside',
+                    start: 100 - (300 / (props.data.length + 1)),
+                    end: 100
+                },
+                {
+                    show: true,
+                    type: 'slider',
+                    y: '90%',
+                    start: 100 - (300 / (props.data.length + 1)),
+                    end: 100
+                }
+            ]
           }
       }]
     };
