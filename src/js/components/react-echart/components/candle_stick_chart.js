@@ -107,17 +107,22 @@ class CandleStickChart extends Component {
                 fontSize: 14
               }
             },
+            grid: {
+              left: 40,
+              right: '5%',
+              bottom: '15%'
+            },
             dataZoom: [
                 {
                     type: 'inside',
-                    start: 100 - (300 / (props.data.length + 1)),
+                    start: 100 - Math.ceil(250 / props.data.length),
                     end: 100
                 },
                 {
                     show: true,
                     type: 'slider',
                     y: '90%',
-                    start: 100 - (300 / (props.data.length + 1)),
+                    start: 100 - Math.ceil(250 / props.data.length),
                     end: 100
                 }
             ]
