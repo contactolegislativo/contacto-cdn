@@ -1,7 +1,10 @@
 .d-card, .vpanel {
   text-align: center;
   .header {
-    background-color: #f50057;
+    background: linear-gradient( rgba(245, 0, 87, 0.7), rgba(245, 0, 87, 0.7) ), url(/assets/img/camara.jpg);
+    background-position: center;
+    background-size: cover;
+
     .picture {
       position: relative;
       margin: 0 auto;
