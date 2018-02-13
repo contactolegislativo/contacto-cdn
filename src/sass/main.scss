@@ -20,6 +20,16 @@ $dark-primary-color: #f50057;
   @extend %main-content;
 }
 
+.title {
+  a {
+    font-size: 18px;
+    color: $dark-primary-color;
+    &:hover {
+      color: $primary-ligth-text-color;
+    }
+  }
+}
+
 .navbar-transparent {
   background-color: rgba(1,1,1,0);
   position: absolute !important;
@@ -27,6 +37,7 @@ $dark-primary-color: #f50057;
 
 .t-s {
   color: $primary-ligth-text-color!important;
+  font-style: italic;
 }
 
 .btn-bar {
