@@ -20,8 +20,9 @@ $dark-primary-color: #f50057;
   @extend %main-content;
 }
 
-.navbar {
-  background-color: $dark-primary-color;
+.navbar-transparent {
+  background-color: rgba(1,1,1,0);
+  position: absolute !important;
 }
 
 .t-s {
@@ -88,6 +89,9 @@ html, body {
 .table-container {
   padding: 0 15px;
   min-height: 600px;
+  a {
+    color: $dark-primary-color!important;
+  }
 }
 
 @media screen and (max-width: 360px) {

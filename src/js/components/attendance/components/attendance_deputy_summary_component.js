@@ -8,7 +8,7 @@ export default function(props) {
     <div className="chart">
       <div className="grade full-panel text-center">
         <div className="center-content">
-          <h1 className="h2 mb-3" >{ props.deputy.name }</h1>
+          <h1 className="h2 mb-3 pt-5" >{ props.deputy.name }</h1>
           <div className="picture">
             <div className="main yellow">
               <img src={`http://sitl.diputados.gob.mx/LXIII_leg/${props.deputy.picture}`} />
