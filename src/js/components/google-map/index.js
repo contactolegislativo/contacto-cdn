@@ -39,21 +39,38 @@ class GoogleMap {
 
     // Add listener for click
     this.map.data.addListener('click', function(event) {
-      // Remove previous infoBox if any
-      if(_self.infoBox) _self.infoBox.setMap(null);
-      // Create new InfoBox
-      _self.infoBox = infoBoxFactory({
-        latlng: event.latLng,
-        map: _self.map,
-        title: `Distrito ${event.feature.f.district}`,
-        content: _self._template(event.feature.f),
-        onClose: _self.closeInfoBox.bind(_self)
-      });
+      // There is not box
+      if(!_self.infoBox) {
+        // Create new InfoBox
+        _self.infoBox = infoBoxFactory({
+          id: event.feature.f.district,
+          latlng: event.latLng,
+          map: _self.map,
+          title: `Distrito ${event.feature.f.district}`,
+          content: _self._template(event.feature.f),
+          onClose: _self.closeInfoBox.bind(_self)
+        });
+      } else if(_self.infoBox.id !== event.feature.f.district) {
+        // There is an active box but user is requesting another one
+        _self.infoBox.setMap(null);
+        _self.infoBox = infoBoxFactory({
+          id: event.feature.f.district,
+          latlng: event.latLng,
+          map: _self.map,
+          title: `Distrito ${event.feature.f.district}`,
+          content: _self._template(event.feature.f),
+          onClose: _self.closeInfoBox.bind(_self)
+        });
+      }
     });
   }
 
   closeInfoBox(event) {
-    if(this.infoBox) this.infoBox.setMap(null);
+    if(this.infoBox) {
+      this.infoBox.setMap(null);
+      this.infoBox = null;
+    }
+    event.preventDefault();
     event.stopPropagation();
   }
 

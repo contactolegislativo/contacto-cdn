@@ -18,6 +18,7 @@
     height: 100%;
     width: 100%;
     background: #eaeaea;
+    position: absolute!important;
   }
 
   .spinner-modal {
@@ -53,6 +54,9 @@
 @media screen and (max-width: 990px) {
   .spinner-modal {
     min-width: 80%;
+  }
+  .map {
+    position: initial!important;
   }
   .search-bar {
       top: 0;

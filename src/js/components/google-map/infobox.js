@@ -9,6 +9,7 @@ export default function(opts) {
    */
   function InfoBox(opts) {
     google.maps.OverlayView.call(this);
+    this.id = opts.id;
     this.latlng_ = opts.latlng;
     this.map_ = opts.map;
     this.title = opts.title;
@@ -44,7 +45,7 @@ export default function(opts) {
     }
   };
 
-  /* Redraw the Bar based on the current projection and zoom level
+  /* raw the Bar based on the current projection and zoom level
    */
   InfoBox.prototype.draw = function() {
     // Creates the element if it doesn't exist already.
@@ -116,6 +117,7 @@ export default function(opts) {
       }
 
       google.maps.event.addDomListener(titleClose, 'click', this.onClose);
+      google.maps.event.addDomListener(titleClose, 'touchstart', this.onClose);
 
       popover.appendChild(header);
       popover.appendChild(close);
@@ -123,6 +125,9 @@ export default function(opts) {
       div.appendChild(popover);
       panes.floatPane.appendChild(div);
       this.panMap();
+
+      popover.querySelectorAll('a').forEach(item => { item.ontouchstart = () => {  window.location = item.href } });
+
     } else if (div.parentNode != panes.floatPane) {
       // The panes have changed.  Move the div.
       div.parentNode.removeChild(div);
