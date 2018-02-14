@@ -2,6 +2,28 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import echarts from 'echarts/dist/echarts-en.min.js';
 
+var CoreHelper = {
+  centerTitle: {
+    text: 'Default Title',
+    subtext: 'Default sub text',
+    sublink: '/#',
+    show: true,
+    left: 'center',
+    bottom: 0
+  },
+  horizontalScrollLegend: {
+    itemGap: 10,
+    orient: 'horizontal',
+    type: 'scroll'
+  }
+  saveImageToolbox: {
+    show: true,
+    feature: {
+        saveAsImage: {show: true}
+    }
+  }
+};
+
 class CoreChart extends Component {
   createChart() {
     // Initialize after dom ready
@@ -44,4 +66,5 @@ class CoreChart extends Component {
   }
 }
 
+export CoreHelper;
 export default CoreChart;

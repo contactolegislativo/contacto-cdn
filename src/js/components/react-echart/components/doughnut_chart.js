@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import echarts from 'echarts/dist/echarts-en.min.js';
-import CoreChart from './core_chart';
+import CoreChart, { CoreHelper } from './core_chart';
 
 var ChartSettings = {
   theme: {
@@ -51,21 +51,11 @@ let option = {
       formatter: "{a} <br/>{b} : {c} ({d}%)"
   },
   legend: {
-    itemGap: 10,
-    orient: 'horizontal',
+    ...CoreHelper.horizontalScrollLegend,
     bottom: 0,
-    type: 'scroll',
     data:['01','02','03','04','05','06']
   },
-  toolbox: {
-      show : true,
-      feature : {
-          mark : {show: true},
-          dataView : {show: true, readOnly: false},
-          restore : {show: true},
-          saveAsImage : {show: true}
-      }
-  }
+  toolbox: CoreHelper.saveAsImageToolbox
 };
 
 class DoughnutChart extends Component {
@@ -109,13 +99,11 @@ class DoughnutChart extends Component {
     });
 
     option.series = seriesArray;
-    
+
     return {
       ...option,
       title: {
-        show: true,
-        left: 'center',
-        bottom: 0,
+        ...CoreHelper.centerTitle,
         text: props.title,
         subtext: props.subtitle,
         sublink: props.sublink
