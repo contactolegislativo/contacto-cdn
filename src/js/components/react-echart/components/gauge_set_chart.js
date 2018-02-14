@@ -54,57 +54,6 @@ var centerGauge = {
     data:[{value: 40, name: 'Diputado'}]
 };
 
-/* Default format for left gauge  */
-var leftGauge = {
-    ...gaugeAxis,
-    name: 'Name',
-    type: 'gauge',
-    center: ['20%', '55%'],
-    radius: '35%',
-    min:0,
-    max:7,
-    endAngle: 80,
-    splitNumber:7,
-    pointer: {
-        width:5
-    },
-    title: {
-        offsetCenter: [0, '-30%'],
-    },
-    detail: {
-        fontSize: 20,
-        fontWeight: 'bolder',
-        formatter: formatter
-    },
-    data:[{value: 1.5, name: 'Promedio \n Camara'}]
-};
-
-/* Default format for right gauge  */
-let rightGauge = {
-    ...gaugeAxis,
-    name: 'Inicativas',
-    type: 'gauge',
-    center: ['80%', '55%'],
-    radius: '35%',
-    min:0,
-    max:7,
-    startAngle: 100,
-    endAngle: -45,
-    splitNumber:7,
-    pointer: {
-        width:5
-    },
-    title: {
-        offsetCenter: [0, '-30%'],
-    },
-    detail: {
-        fontSize: 20,
-        fontWeight: 'bolder',
-        formatter: formatter
-    },
-    data:[{value: 2.5, name: 'Promedio \n Plurinominal'}]
-};
-
 /* Default format for Gauge Chart */
 var ChartSettings = {
   defaultOptions: {
@@ -115,50 +64,21 @@ var ChartSettings = {
     },
     media: [{
       query: {
-          maxWidth: 360
+          maxWidth: 600
       },
       option: {
-        title: {
-          textStyle: {
-            fontSize: 12
-          }
-        }
-      }
-    },{
-      query: {
-          maxWidth: 640
-      },
-      option: {
-        title: {
-          textStyle: {
-            fontSize: 14
-          }
-        },
         series: [{
               endAngle:45,
-              radius: '50%',
-              center: ['50%','45%'],
-              splitNumber: 5,
-              detail: {
-                fontSize: 18
-              }
+              radius: '50%'
             }, {
               startAngle: 225,
               endAngle: 45,
-              center: ['25%', '20%'],
-              radius: '40%',
-              splitNumber: 3,
-              detail: {
-                fontSize: 16
-              }
+              center: ['25%', '25%'],
+              radius: '40%'
             }, {
               endAngle: 45,
-              center: ['75%', '70%'],
-              radius: '40%',
-              splitNumber: 3,
-              detail: {
-                fontSize: 16
-              }
+              center: ['75%', '75%'],
+              radius: '40%'
             }]
       }
     }]
@@ -170,9 +90,9 @@ var ChartSettings = {
   }
 };
 
-class GaugeChart extends Component {
+class GaugeSetChart extends Component {
   render() {
-    const { left, right, center, title, subtitle, subtitlelink, boundaries } = this.props;
+    const { data, title, subtitle, subtitlelink, boundaries } = this.props;
 
     let floor = boundaries.min - boundaries.min % 10;
     let ceiling = boundaries.max % 10 === 0 ? boundaries.max : boundaries.max  + (10 - boundaries.max % 10);
@@ -214,4 +134,4 @@ class GaugeChart extends Component {
   }
 }
 
-export default GaugeChart;
+export default GaugeSetChart;

@@ -1,4 +1,5 @@
-$sm-size: 175px ;
+$xs-size: 125px;
+$sm-size: 175px;
 $md-size: 255px;
 
 .picture {
@@ -9,11 +10,15 @@ $md-size: 255px;
     height: inherit;
     border-radius: 50%;
     overflow: hidden;
+    background-color: #fff;
     &.red {
-      border: 3px solid #c4001d;
+      border: 12px solid #f50057;
+    }
+    &.yellow {
+      border: 12px solid #FFEB3B;
     }
     &.white {
-      border: 3px solid #fff;
+      border: 12px solid #fff;
     }
   }
   .secondary {
@@ -24,12 +29,30 @@ $md-size: 255px;
   }
 }
 
+.sm-picture {
+  width: $xs-size!important;
+  height: $xs-size!important;
+  .main img {
+    width: $xs-size!important;
+  }
+  .secondary {
+    width: $xs-size/3!important;
+  }
+}
+
 @media screen and (max-width: 990px) {
   .picture {
     width: $sm-size;
     height: $sm-size;
-    .main img {
-      width: $sm-size!important;
+    .main {
+      img {
+        width: $sm-size;
+      }
+      &.red, &.yellow {
+        img {
+          width: $sm-size - 24;
+        }
+      }
     }
     .secondary {
       width: $sm-size/3;
@@ -41,8 +64,15 @@ $md-size: 255px;
   .picture {
     width: $md-size;
     height: $md-size;
-    .main img {
-      width: $md-size!important;
+    .main  {
+      img {
+        width: $md-size;
+      }
+      &.red, &.yellow {
+        img {
+          width: $md-size - 24;
+        }
+      }
     }
     .secondary {
       width: $md-size/3;

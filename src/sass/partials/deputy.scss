@@ -1,29 +1,99 @@
-.d-card {
- width: 100%;
-}
-
-.d-card .secondary-section {
-  min-height: 150px;
-}
-
-.d-card-header {
+.d-card, .vpanel {
   text-align: center;
+  .header {
+    background: linear-gradient(180deg, rgba(245, 0, 87, .8), rgba(245, 0, 87, 0.65)), url(/assets/img/camara.jpg);
+    background-position: center;
+    background-size: cover;
+    color: #fff;
+    &.hero {
+      min-height: 25vh;
+      position: relative;
+      .h1, .h2, .h3 {
+        color: #fff;
+        position: absolute;
+        bottom: 0;
+        padding-left: 10px;
+      }
+    }
+    .picture {
+      position: relative;
+      margin: 0 auto;
+      transform: translate(0%, 50%);
+    }
+  }
+  .title {
+    margin-top: 100px;
+  }
+
+  .circle-btn {
+    padding: .5rem;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 1rem;
+    background-color: #f50057;
+    color: #fff;
+    width: 3rem;
+    height: 3rem;
+    a {
+      color: #fff;
+      i {
+        font-size: 20px;
+        padding-top: 5px;
+      }
+    }
+  }
+}
+
+.grade {
+  .circle-btn {
+    text-align: center;
+    padding: .5rem;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 1rem;
+    background-color: #fff;
+    color: #f50057;
+    width: 3rem;
+    height: 3rem;
+    a {
+      color: #f50057;
+      i {
+        font-size: 20px;
+        padding-top: 5px;
+      }
+    }
+  }
+}
+
+.party-budget {
+  margin: 0 auto;
+  width: 250px;
+  position: relative;
+  margin-bottom: 6rem;
+}
+
+.party-budget .party {
+  width: 200px;
+}
+
+
+.party-budget .budget {
+  position: absolute;
+  width: 40%;
+  max-width: 150px;
+  top: 65%;
+  left: 70%;
+}
+
+
+.main-section, .secondary-section {
+  background-color: #F5F5F5;
 }
 
 @media screen and (min-width: 990px) {
-  .d-card .main-section {
-    position: fixed;
-    width: 50%;
-    bottom: 0;
-    top: 0;
-    z-index: -1;
-    padding-top: 3.5rem;
+  .d-card {
+    .title {
+      margin-top: 150px;
+    }
   }
-
-  .d-card .secondary-section {
-    margin-left: 50%;
-    background-color: #eee;
-    width: 50%;
-  }
-
 }

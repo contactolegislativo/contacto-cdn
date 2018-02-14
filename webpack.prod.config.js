@@ -46,5 +46,11 @@ module.exports = {
         path.resolve(__dirname, 'src/js/template')
     ],
     extensions: ['.js', '.jsx']
-   }
+  },
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      include: /\.min\.js$/,
+      minimize: true
+    })
+  ]
 };

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import echarts from 'echarts/dist/echarts-en.min.js';
-import CoreChart, { CoreHelper } from './core_chart';
+import CoreChart from './core_chart';
+import CoreHelper from './core_helper';
 
 var ChartSettings = {
   theme: {
@@ -55,15 +56,15 @@ let option = {
     bottom: 0,
     data:['01','02','03','04','05','06']
   },
-  toolbox: CoreHelper.saveAsImageToolbox
+  toolbox: CoreHelper.saveImageToolbox
 };
 
 class DoughnutChart extends Component {
   parseChartOptions(props) {
-    let initialRatio = (props.width / 3);
+    let initialRatio = (props.frame.width / 3);
     let doughtnutWidth = initialRatio / (2 * props.seriesArray.length);
     let x = initialRatio, y = initialRatio + doughtnutWidth;
-    let seriesArray = props.seriesArray.map(item => {
+    let seriesArray = props.seriesArray.map((item, index) => {
       x -= doughtnutWidth; y -= doughtnutWidth;
 
       if(props.limit - item.total > 0)
@@ -72,7 +73,7 @@ class DoughnutChart extends Component {
       return {
         ...item,
         type:'pie',
-        clockWise: false,
+        clockWise: (index === 0) ? false : true,
         hoverAnimation: false,
         radius : [x, y],
         itemStyle : dataStyle,
@@ -101,18 +102,44 @@ class DoughnutChart extends Component {
     option.series = seriesArray;
 
     return {
-      ...option,
-      title: {
-        ...CoreHelper.centerTitle,
-        text: props.title,
-        subtext: props.subtitle,
-        sublink: props.sublink
+      baseOption: {
+        ...option,
+        title: {
+          ...CoreHelper.centerTitle,
+          text: props.title,
+          subtext: props.subtitle,
+          sublink: props.sublink
+        },
+        legend: {
+          ...CoreHelper.horizontalScrollLegend,
+          data: props.labels,
+          top: 55,
+          formatter: props.simpleFormatter
+        }
       },
-      legend: {
-        data: props.labels,
-        top: 55,
-        formatter: props.simpleFormatter
-      }
+      media: [{
+        query: {
+            maxWidth: 360
+        },
+        option: {
+          title: {
+            textStyle: {
+              fontSize: 12
+            }
+          }
+        }
+      }, {
+        query: {
+            maxWidth: 640
+        },
+        option: {
+          title: {
+            textStyle: {
+              fontSize: 14
+            }
+          }
+        }
+      }]
     };
   }
 

@@ -1,7 +1,18 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import echarts from 'echarts/dist/echarts-en.min.js';
-import CoreChart, { CoreHelper } from './core_chart';
+import CoreChart from './core_chart';
+import CoreHelper from './core_helper';
+
+let gradientPalette = ['#F81D46', '#F81E3B', '#F82031', '#F72126', '#F72922', '#F73523', '#F74224', '#F74F25', '#F65B27', '#F66728', '#F67329', '#F67F2A', '#F68B2B', '#F5962D', '#F5A22E', '#F5AD2F', '#F5B830', '#F5C331', '#F4CE32', '#F4D934', '#F4E335', '#F4EE36', '#F0F437', '#E5F438', '#DBF339', '#D1F33B', '#C7F33C', '#BDF33D', '#B3F33E', '#A9F23F', '#A0F240', '#97F241', '#8DF243', '#84F244', '#7CF145', '#73F146', '#6AF147', '#62F148', '#5AF149', '#52F04A'];
+
+var makeGradient = function(number) {
+  let iterator = Math.floor(gradientPalette.length / (number + 1));
+  let r =  gradientPalette.filter((item, index) => {
+    return index % iterator === 0;
+  });
+  return r.reverse();
+}
 
 var ChartSettings = {
   pie: {
@@ -31,7 +42,7 @@ var ChartSettings = {
       radius: ['35%', '50%'],
       label: {
           normal: {
-              formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+              formatter: '{a|{b}}{abg|}\n{hr|}\n  {c} - {per|{d}%}  ',
               backgroundColor: '#eee',
               borderColor: '#aaa',
               borderWidth: 1,
@@ -68,6 +79,7 @@ var ChartSettings = {
               }
           }
       },
+      color: gradientPalette.reverse(),
       data:[
           {value:335, name:'A'},
           {value:310, name:'E'},
@@ -80,13 +92,64 @@ var ChartSettings = {
       ]
   },
   defaultOptions : {
+    options: {
       title: CoreHelper.centerTitle,
-      toolbox: CoreHelper.saveAsImageToolbox,
+      toolbox: CoreHelper.saveImageToolbox,
       tooltip: {
           trigger: 'item',
-          formatter: "{a} <br/>{b}: {c} ({d}%)"
+          formatter: "{b} <br/>{c} - ({d}%)"
       },
       series: []
+    },
+    media: [{
+      query: {
+          maxWidth: 360
+      },
+      option: {
+        title: {
+          textStyle: {
+            fontSize: 12
+          }
+        }
+      }
+    },{
+      query: {
+          maxWidth: 640
+      },
+      option: {
+        title: {
+          textStyle: {
+            fontSize: 14
+          }
+        },
+        series: [{
+          center: ['50%', '45%'],
+          radius: ['50%', '80%'],
+          label: {
+            normal: {
+              position: 'inner',
+              formatter: '{b} \n ({d}%)',
+              backgroundColor: 'transparent',
+              borderColor: 'transparent',
+              borderWidth: 0,
+              borderRadius: 0,
+              rich: {}
+            }
+          },
+          labelLine: {
+            normal: {
+              show: false
+            },
+            emphasis: {
+              show: true
+            }
+          }
+        }, {
+            center: ['50%', '45%'],
+            radius: [0, '40%']
+          }]
+      }
+    }]
   },
   theme: {
     textStyle: {
@@ -97,27 +160,32 @@ var ChartSettings = {
 
 class DoublePieChart extends Component {
   render() {
+
+    if(this.props.inner[0].value === 0) delete this.props.inner[0];
+    if(this.props.inner[2].value === 0) delete this.props.inner[2];
+
     let options = {
-      ...ChartSettings.defaultOptions,
-      title: {
-        show: true,
-        left: 'center',
-        bottom: 0,
-        text: this.props.title,
-        subtext: this.props.subtitle || '',
-        sublink: this.props.sublink || ''
-      },
-      series: [
-        {
-          ...ChartSettings.pie,
-          data: this.props.inner
+      baseOption: {
+        ...ChartSettings.defaultOptions.options,
+        title: {
+          ...CoreHelper.centerTitle,
+          text: this.props.title,
+          subtext: this.props.subtitle || '',
+          sublink: this.props.sublink || ''
         },
-        {
+        series: [{
           ...ChartSettings.doughtnut,
+          color: makeGradient(this.props.outer.length),
           data: this.props.outer
-        }
-      ]
-    }
+        }, {
+          ...ChartSettings.pie,
+          color: makeGradient(this.props.inner.length),
+          data: this.props.inner
+        }]
+      },
+      media: ChartSettings.defaultOptions.media
+    };
+
     return <CoreChart {...this.props} options={options}/>
   }
 }
