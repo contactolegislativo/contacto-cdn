@@ -80,7 +80,7 @@ class View {
       });
     }
     // Inform selection to google analytics select_content 	items, promotions, content_type, content_id
-    if(gtag) gtag('select_content', 'UA-92111911-1', { items: [state.name], content_type: 'state', content_id: stateId });
+    if(gtag) gtag('select_content', 'UA-92111911-1', { 'items': [state.name], 'content_type': 'state', 'content_id': stateId });
   }
 }
 

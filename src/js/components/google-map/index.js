@@ -64,6 +64,9 @@ class GoogleMap {
           content: _self._template(event.feature.f),
           onClose: _self.closeInfoBox.bind(_self)
         });
+        let deputy = event.feature.f.deputy.deputy;
+        // Inform selection to google analytics view_item 	items
+        gtag('view_item', 'UA-92111911-1', { items: [ `Dip. ${deputy.displayName} |  ${deputy.state}, Distrito ${deputy.area}` ] });
       }
     });
   }
