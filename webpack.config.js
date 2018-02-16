@@ -43,6 +43,7 @@ module.exports = {
         'node_modules',
         'node_modules/react-echarts-v3/src',
         path.resolve(__dirname, 'src/js/components'),
+        path.resolve(__dirname, 'src/js/services'),
         path.resolve(__dirname, 'src/js/template')
     ],
     extensions: ['.js', '.jsx']
