@@ -82,7 +82,11 @@ class View {
   }
 }
 
+let opts = {
+  api: '<Insert your Google Maps API key>'
+};
+
 // Awaiting for google api to load
-googleApi().then(function() {
+googleApi(opts).then(function() {
   let view = new View();
 });
