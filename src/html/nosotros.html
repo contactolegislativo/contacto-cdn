@@ -7,10 +7,10 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
   </head>
-  <body class="vstack">
-    <nav class="stack-fix navbar navbar-expand-lg navbar-dark">
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
       <a class="navbar-brand" href="/">
-        <img alt="Contacto Legislativo" src="assets/img/logo.png"> <span>Contacto Legislativo</span>
+        <img alt="Contacto Legislativo" src="/assets/img/logo.png"> <span>Contacto Legislativo</span>
       </a>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,7 +20,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="/legislatura/LXIII/estadisticas">Estadisticas</a>
+            <a class="nav-link" href="/legislatura/LXIII/asistencias">Estadisticas</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="/nosotros">Nosotros</a>
@@ -28,26 +28,28 @@
         </ul>
       </div>
     </nav>
+    <div class="container text-justify pt-3">
+      <h1 class="h4 pb-4">¿Que es Contacto Legislativo?</h1>
+      <p> <strong>Contacto Legislativo</strong> es una iniciativa creada por un grupo de ciudadanos independientes preocupados por la brecha de comunicación entre representantes políticos y la ciudadanía.</p>
+      <p>Creemos que abrir espacios de debate entre representantes y ciudadanos favorece el desarrollo del país, pues propicia la participación ciudadana en el desarrollo de iniciativas e incrementa el sentido de responsabilidad de servidores públicos.</p>
+      <p>Con tal propósito se ha creado una plataforma web que permita a la ciudadanía identificar a su diputado federal, obtener su información de contacto y un resumen de su desempeño de una manera amigable.</p>
+      <p>Contacto Legislativo recaba información de varias fuentes como lo son INEGI, INE, Cámara de Diputados, así como de otras iniciativas como 3de3 de IMCO y #SinVotoNoHayDinero.</p>
 
-    <!-- <div class="stack-fit workspace">
-      <div class="search-bar">
-        <form class="form-inline my-2 my-lg-0">
-          <select id="states" class="form-control mr-sm-2" aria-label="Search">
-            <option value="">-- Select --</option>
-          </select>
-        </form>
+      <h2 class="h4 pt-4 pb-4">Metodologia</h2>
+      <p>Nuestro sitio recaba informacion del portal de <a href="http://sitl.diputados.gob.mx/LXI_leg/info_diputados.php" target="_blank">Camara de diputados</a>
+        como lo son perfil de diputado, asistencia, iniciativas y votaciones, posteriormente se realiza un analisis estadistico para establecer una comparativa
+        en cada uno de los criterios a evaluar, con el fin de permitir al ciudadano entender mas a detalle el desempeño de su representante.</p>
+      <p>Información sobre distritos asi como cartografia son proporcionados por <a href="http://portalanterior.ine.mx/archivos3/portal/historico/contenido/Geografia_Electoral_y_Cartografia/" target="_blank">INE</a>.</p>
+      <p>Puede descargar una copia de nuestra informacion en la siguiente <a href="/contacto_legislarivo.zip" target="_blank">liga</a>.</p>
+
+      <h2 class="h4 pt-4 pb-4">Aclaraciones</h2>
+      <p>Aclaraciones o dudas pueden ser hechas a traves de nuestro pefil de twitter <a href="https://twitter.com/clegislativomx">@clegislativomx</a>.</p>
+    </div>
+
+    <footer class="text-muted font-italic">
+      <div class="container">
+        <p class="text-center pt-4">Contacto Legislativo &copy; 2018 | <a href="/privacidad">Privacidad</a></p>
       </div>
-      <div id="map" class="map">
-      </div>
-      <div id="modal" class="spinner-modal">
-        <h4>Estamos ubucando los distritos de tu estado</h4>
-        <span class="cssload-loader"><span class="cssload-loader-inner"></span></span>
-        <h5>Deseo seleccionar mi estado.</h5>
-      </div>
-    </div> -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
-    <script src="/assets/js/main.bundle.js"></script>
+    </footer>
   </body>
 </html>
