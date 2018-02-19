@@ -6,7 +6,7 @@ var findLocation = function() {
     axios.post(url, {})
      .then(response => {
        let payload = { location: response.data.location };
-       let url = `http://nominatim.openstreetmap.org/reverse?format=json&lat=${payload.location.lat}&lon=${payload.location.lng}&zoom=18&addressdetails=1`;
+       let url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${payload.location.lat}&lon=${payload.location.lng}&zoom=18&addressdetails=1`;
        axios.get(url, {})
          .then(response => {
             payload.address = response.data.address;
