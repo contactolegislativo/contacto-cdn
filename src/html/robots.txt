@@ -1,0 +1,17 @@
+# No assets
+User-agent: *
+Disallow: /assets/
+
+# No district info
+User-agent: *
+Disallow: /districts/
+
+# No API
+User-agent: *
+Disallow: /api/
+
+# Rule 2
+User-agent: *
+Allow: /
+
+Sitemap: https://contactolegislativo.com/sitemap.xml
