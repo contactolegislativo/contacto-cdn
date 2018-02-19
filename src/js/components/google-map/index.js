@@ -52,7 +52,7 @@ class GoogleMap {
         });
         let deputy = event.feature.f.deputy.deputy;
         // Inform selection to google analytics view_item 	items
-        gtag('view_item', 'UA-92111911-1', { items: [ `Dip. ${deputy.displayName} |  ${deputy.state}, Distrito ${deputy.area}` ] });
+        gtag('event', 'view_item', { items: [ `Dip. ${deputy.displayName} |  ${deputy.state}, Distrito ${deputy.area}` ] });
       } else if(_self.infoBox.id !== event.feature.f.district) {
         // There is an active box but user is requesting another one
         _self.infoBox.setMap(null);
@@ -66,7 +66,7 @@ class GoogleMap {
         });
         let deputy = event.feature.f.deputy.deputy;
         // Inform selection to google analytics view_item 	items
-        gtag('view_item', 'UA-92111911-1', { items: [ `Dip. ${deputy.displayName} |  ${deputy.state}, Distrito ${deputy.area}` ] });
+        gtag('event', 'view_item', { items: [ `Dip. ${deputy.displayName} |  ${deputy.state}, Distrito ${deputy.area}` ] });
       }
     });
   }
