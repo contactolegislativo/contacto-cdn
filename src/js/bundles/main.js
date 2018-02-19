@@ -18,22 +18,37 @@ class View {
     });
 
     this.loadStates().then(() => {
-      // If geolocation is in cookies
-      if(Cookie.get('geolocation')) {
+      let stateId = Cookie.get('stateId');
+
+      this.hideModal();
+
+      if(stateId) {
+        this.selectState(stateId);
+        document.getElementById('states').value = stateId;
+      } else if(Cookie.get('geolocation')) {
         let geolocation = Cookie.getJSON('geolocation');
         this.setLocation(geolocation.location, geolocation.address);
       } else {
         // First tome, load location
-        findLocation().then(response => {
-          Cookie.set('geolocation', response, { expires: 7 });
-          this.setLocation(response.location, response.address);
-        });
+        findLocation()
+          .then(response => {
+            Cookie.set('geolocation', response, { expires: 7 });
+            this.setLocation(response.location, response.address);
+          })
+          .catch((reason) => {
+            this.selectState(14);
+            document.getElementById('states').value = 14;
+          });
       }
     });
+
+  }
+
+  hideModal() {
+    document.getElementById('modal').className += " d-none";
   }
 
   setLocation(location, address) {
-    document.getElementById('modal').className += " d-none";
     // Update map location
     this.googleMap.move(location);
     // Identify state
@@ -79,13 +94,17 @@ class View {
         this.googleMap.addLayer(response.data);
       });
     }
+
+    // Save selection
+    Cookie.set('stateId', stateId, { expires: 7 });
+
     // Inform selection to google analytics select_content 	items, promotions, content_type, content_id
     if(gtag) gtag('select_content', 'UA-92111911-1', { 'items': [state.name], 'content_type': 'state', 'content_id': stateId });
   }
 }
 
 let opts = {
-  key: '<Insert your Google Maps API key>'
+  key: ''
 };
 
 // Awaiting for google api to load
