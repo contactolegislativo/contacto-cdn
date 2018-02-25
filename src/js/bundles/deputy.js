@@ -44,7 +44,7 @@ class Register extends Component {
     this.deputy = {
       id: parseInt(document.querySelector('meta[name="deputy-id"]').attributes.value.value),
       name: document.querySelector('meta[name="deputy-name"]').attributes.value.value,
-      picture: document.querySelector('meta[name="deputy-picture"]').attributes.value.value,
+      slug: document.querySelector('meta[name="deputy-slug"]').attributes.value.value,
       party: document.querySelector('meta[name="deputy-party"]').attributes.value.value,
       email: document.querySelector('meta[name="deputy-email"]').attributes.value.value,
       facebook: document.querySelector('meta[name="deputy-facebook"]').attributes.value.value,
