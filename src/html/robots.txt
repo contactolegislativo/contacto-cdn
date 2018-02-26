@@ -1,16 +1,4 @@
-# No assets
-User-agent: *
-Disallow: /assets/
-
-# No district info
-User-agent: *
-Disallow: /districts/
-
-# No API
-User-agent: *
-Disallow: /api/
-
-# Rule 2
+# Allow all
 User-agent: *
 Allow: /
 
