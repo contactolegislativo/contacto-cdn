@@ -24,9 +24,9 @@ export default function(props) {
           </div>
           <h3 className="pt-5 mb-3">Comparte tu feedback con tu diputado</h3>
           <ul className="btn-group mt-4 p-0">
-            <li className="circle-btn"><a target="_blank" href={mail}><i className="fa fa-envelope"></i></a></li>
-            <li className="circle-btn"><a target="_blank" href={`${props.deputy.facebook}`}><i className="fa fa-facebook"></i></a></li>
-            <li className="circle-btn"><a target="_blank" href={twitter}><i className="fa fa-twitter"></i></a></li>
+            <li className="circle-btn"><a target="_blank" rel="nofollow" href={mail}><i className="fa fa-envelope"></i></a></li>
+            <li className="circle-btn"><a target="_blank" rel="nofollow" href={`${props.deputy.facebook}`}><i className="fa fa-facebook"></i></a></li>
+            <li className="circle-btn"><a target="_blank" rel="nofollow" href={twitter}><i className="fa fa-twitter"></i></a></li>
           </ul>
           <div className="clearfix pb-5"></div>
         </div>

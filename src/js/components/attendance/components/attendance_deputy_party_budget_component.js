@@ -45,7 +45,7 @@ export default function(props) {
       <div className="vpanel text-center">
         <div>
           <h3 className="mb-1">Y su partido recibirá
-            <a href="http://www.ine.mx/archivos3/portal/historico/recursos/IFE-v2/DS/DS-CG/DS-SesionesCG/CG-acuerdos/2016/08_Agosto/CGex201608-26/CGex201608-26-ap-1.pdf">
+            <a rel="nofollow" href="http://www.ine.mx/archivos3/portal/historico/recursos/IFE-v2/DS/DS-CG/DS-SesionesCG/CG-acuerdos/2016/08_Agosto/CGex201608-26/CGex201608-26-ap-1.pdf">
               ${budget.toLocaleString()} MX </a> este año
             </h3>
           <h3 className="mb-5 hidden-xs">¿Consideras que es demasiado presupuesto?</h3>
@@ -54,11 +54,11 @@ export default function(props) {
             <img className="budget" src="/assets/img/notes.png"/>
           </div>
         </div>
-        <h4 className="mt-3">Te invitamos a participar en la iniciativa <a href="http://sinvotonohaydinero.mx/" target="_blank">#SinVotoNoHayDinero</a> que propone recortar el gasto de los partidos</h4>
+        <h4 className="mt-3">Te invitamos a participar en la iniciativa <a rel="nofollow" href="http://sinvotonohaydinero.mx/" target="_blank">#SinVotoNoHayDinero</a> que propone recortar el gasto de los partidos</h4>
         <h4 className="mt-3 mb-5">Escribe a tu diputado invitándolo a unirse a la iniciativa</h4>
         <ul className="btn-group">
-          <li className="circle-btn animated infinite wobble"><a target="_blank" href={tweetText}><i className="fa fa-3x fa-twitter"></i></a></li>
-          <li className="circle-btn animated infinite wobble"><a target="_top" href={mailText}><i className="fa fa-3x fa-envelope"></i></a></li>
+          <li className="circle-btn animated infinite wobble"><a target="_blank" rel="nofollow" href={tweetText}><i className="fa fa-3x fa-twitter"></i></a></li>
+          <li className="circle-btn animated infinite wobble"><a target="_top" rel="nofollow" href={mailText}><i className="fa fa-3x fa-envelope"></i></a></li>
         </ul>
       </div>
     </div>
