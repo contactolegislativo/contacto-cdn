@@ -8,6 +8,8 @@ gulp.task('sass', function() {
     gulp.src('src/sass/**/*.scss')
         .pipe(sass({outputStyle: 'expanded'}))
         .pipe(gulp.dest('./dist/css/'))
+    gulp.src('node_modules/font-awesome/fonts/*')
+        .pipe(gulp.dest('./dist/css/fonts'));
 });
 
 gulp.task('minify-css', () => {
@@ -23,6 +25,8 @@ gulp.task('sass:watch', function () {
 gulp.task('html', function() {
     gulp.src('src/html/**.html')
         .pipe(gulp.dest('./dist/html'));
+    gulp.src('src/html/districts/**')
+        .pipe(gulp.dest('./dist/html/districts'));
 });
 
 gulp.task('img', function() {
