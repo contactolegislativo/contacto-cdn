@@ -39,7 +39,7 @@ class GoogleMap {
 
     // Add listener for click
     this.map.data.addListener('click', function(event) {
-      console.log(event.feature)
+      // console.log(event.feature)
       // There is not box
       if(!_self.infoBox) {
         // Create new InfoBox
