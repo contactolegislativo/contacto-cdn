@@ -23,7 +23,7 @@ class GoogleMap {
 
     // Define style for features
     this.map.data.setStyle(function(feature) {
-      let chart = feature.f.deputy.deputy.party;
+      let chart = feature.f.deputySet.deputy.party;
       if(!carto.hasOwnProperty(chart))
         chart = "else";
       let colors = carto[chart];
@@ -39,6 +39,7 @@ class GoogleMap {
 
     // Add listener for click
     this.map.data.addListener('click', function(event) {
+      console.log(event.feature)
       // There is not box
       if(!_self.infoBox) {
         // Create new InfoBox
@@ -50,7 +51,7 @@ class GoogleMap {
           content: _self._template(event.feature.f),
           onClose: _self.closeInfoBox.bind(_self)
         });
-        let deputy = event.feature.f.deputy.deputy;
+        let deputy = event.feature.f.deputySet.deputy;
         // Inform selection to google analytics view_item 	items
         gtag('event', 'view_item', { items: [ `Dip. ${deputy.displayName} |  ${deputy.state}, Distrito ${deputy.area}` ] });
       } else if(_self.infoBox.id !== event.feature.f.district) {
@@ -64,7 +65,7 @@ class GoogleMap {
           content: _self._template(event.feature.f),
           onClose: _self.closeInfoBox.bind(_self)
         });
-        let deputy = event.feature.f.deputy.deputy;
+        let deputy = event.feature.f.deputySet.deputy;
         // Inform selection to google analytics view_item 	items
         gtag('event', 'view_item', { items: [ `Dip. ${deputy.displayName} |  ${deputy.state}, Distrito ${deputy.area}` ] });
       }
