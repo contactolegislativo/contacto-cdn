@@ -45,7 +45,7 @@ export default function(props) {
           <div className="crafted">
             <span>Crafted with love by</span>
             <a onClick={lead('generate_lead', 'wedevelop')} href="http://www.facebook.com/wedevelopmx" target="_blank">
-              <img src="/assets/img/wedevelop_white_trans.png"/>
+              <img alt="logo consultoria de software wedevelop.mx" src="/assets/img/wedevelop_white_trans.png"/>
             </a>
           </div>
         </div>

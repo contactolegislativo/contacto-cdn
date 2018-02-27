@@ -11,7 +11,7 @@ export default function(props) {
           <h1 className="h2 mb-3 pt-5" >{ props.deputy.name }</h1>
           <div className="picture">
             <div className="main yellow">
-              <img src={`/assets/img/deputies/${props.deputy.slug}.jpg`} />
+              <img alt={`Diputado ${ props.deputy.name }`} src={`/assets/img/deputies/${props.deputy.slug}.jpg`} />
             </div>
           </div>
           <div className="star-ratings-css">

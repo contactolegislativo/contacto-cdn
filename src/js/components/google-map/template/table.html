@@ -1,9 +1,9 @@
 <div style="text-align: center; width: 100%;">
   <div class="sm-picture picture">
     <div class="main">
-      <img src="assets/img/deputies/<%- deputySet.deputy.slug %>.jpg"/>
+      <img alt="Diputado <%- deputySet.deputy.displayName %>" src="assets/img/deputies/<%- deputySet.deputy.slug %>.jpg"/>
     </div>
-    <img class="secondary" src="assets/img/<%- deputySet.deputy.party %>.png"/>
+    <img alt="logo partido <%- deputySet.deputy.party %>" class="secondary" src="assets/img/<%- deputySet.deputy.party %>.png"/>
   </div>
   <h6 class="mt-2 mb-3"><%- deputySet.deputy.displayName %></h6>
   <a class="btn btn-sm btn-danger" href="/legislatura/LXIII/<%- url%>" target="_self">Ver Mas</a>

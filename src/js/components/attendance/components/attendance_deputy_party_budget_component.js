@@ -50,8 +50,8 @@ export default function(props) {
             </h3>
           <h3 className="mb-5 hidden-xs">¿Consideras que es demasiado presupuesto?</h3>
           <div className="party-budget">
-            <img className="party" src={`/assets/img/${props.party}.png`}/>
-            <img className="budget" src="/assets/img/notes.png"/>
+            <img className="party" alt={`logo partido ${props.party}`} src={`/assets/img/${props.party}.png`}/>
+            <img className="budget" alt="imagen billete" src="/assets/img/notes.png"/>
           </div>
         </div>
         <h4 className="mt-3">Te invitamos a participar en la iniciativa <a rel="nofollow" href="http://sinvotonohaydinero.mx/" target="_blank">#SinVotoNoHayDinero</a> que propone recortar el gasto de los partidos</h4>
