@@ -1,11 +1,10 @@
 var path = require('path');
 var webpack = require('webpack');
 
-console.log(path.resolve(__dirname, 'src/js/components'))
-
 module.exports = {
    entry: {
      main: './src/js/bundles/main.js',
+     utils: './src/js/bundles/utils.js',
      deputy: './src/js/bundles/deputy.js',
      attendance: './src/js/bundles/attendance.js'
    },
@@ -47,5 +46,12 @@ module.exports = {
         path.resolve(__dirname, 'src/js/template')
     ],
     extensions: ['.js', '.jsx']
-   }
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+        $: "jquery", // Used for Bootstrap JavaScript components
+        jQuery: "jquery", // Used for Bootstrap JavaScript components
+        Popper: ['popper.js', 'default'] // Used for Bootstrap dropdown, popup and tooltip JavaScript components
+      })
+  ]
 };

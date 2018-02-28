@@ -10,6 +10,10 @@ gulp.task('sass', function() {
         .pipe(gulp.dest('./dist/css/'))
     gulp.src('node_modules/font-awesome/fonts/*')
         .pipe(gulp.dest('./dist/css/fonts'));
+    gulp.src('node_modules/datatables/media/css/*')
+        .pipe(gulp.dest('./dist/css/datatables/css'));
+    gulp.src('node_modules/datatables/media/images/*')
+        .pipe(gulp.dest('./dist/css/datatables/images'));
 });
 
 gulp.task('minify-css', () => {

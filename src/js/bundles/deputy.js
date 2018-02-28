@@ -1,3 +1,8 @@
+// Boottrap
+import 'bootstrap/js/src/util';
+import 'bootstrap/js/src/dropdown';
+import 'bootstrap/js/src/collapse';
+
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';

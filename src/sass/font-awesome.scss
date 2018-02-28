@@ -5,15 +5,15 @@
 @import "node_modules/font-awesome/scss/_mixins.scss";
 // @import "node_modules/font-awesome/scss/_path.scss";
 
-$fa-font-path-override: "https://contactolegislativo.com/assets/css/fonts" !default;
+// $fa-font-path-override: "/fonts" !default;
 @font-face {
   font-family: 'FontAwesome';
-  src: url('#{$fa-font-path-override}/fontawesome-webfont.eot');
-  src: url('#{$fa-font-path-override}/fontawesome-webfont.eot') format('embedded-opentype'),
-    url('#{$fa-font-path-override}/fontawesome-webfont.woff2') format('woff2'),
-    url('#{$fa-font-path-override}/fontawesome-webfont.woff') format('woff'),
-    url('#{$fa-font-path-override}/fontawesome-webfont.ttf') format('truetype'),
-    url('#{$fa-font-path-override}/fontawesome-webfont.svg#fontawesomeregular') format('svg');
+  src:url(/assets/css/fonts/fontawesome-webfont.eot);
+   src:url(/assets/css/fonts/fontawesome-webfont.eot) format("embedded-opentype"),
+     url(/assets/css/fonts/fontawesome-webfont.woff2) format("woff2"),
+     url(/assets/css/fonts/fontawesome-webfont.woff) format("woff"),
+     url(/assets/css/fonts/fontawesome-webfont.ttf) format("truetype"),
+     url(/assets/css/fonts/fontawesome-webfont.svg#fontawesomeregular) format("svg");
 //  src: url('#{$fa-font-path-override}/FontAwesome.otf') format('opentype'); // used when developing fonts
   font-weight: normal;
   font-style: normal;

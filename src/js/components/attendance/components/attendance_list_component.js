@@ -69,7 +69,7 @@ class AttendanceList extends Component {
       return <Loader width={this.props.frame.width}/>;
 
     return (
-      <div className="table-container">
+      <div className="table-container pl-1 pr-1">
         <table className="table table-sm table-striped">
           <thead className="thead-dark">
             <tr>

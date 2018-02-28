@@ -1,3 +1,8 @@
+// Bootstrap
+import 'bootstrap/js/src/util';
+import 'bootstrap/js/src/dropdown';
+import 'bootstrap/js/src/collapse';
+
 import axios from 'axios';
 import googleApi from 'load-google-maps-api';
 import Cookie from 'js-cookie';
@@ -6,6 +11,7 @@ import { createOption } from 'utils/dom';
 import { findLocation } from 'utils/geolocation';
 import GoogleMap from 'google-map';
 import tableHtml from "google-map/template/table.html";
+
 
 class View {
   constructor() {

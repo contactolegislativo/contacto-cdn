@@ -6,6 +6,7 @@ console.log(path.resolve(__dirname, 'src/js/components'))
 module.exports = {
    entry: {
      main: './src/js/bundles/main.js',
+     utils: './src/js/bundles/utils.js',
      deputy: './src/js/bundles/deputy.js',
      attendance: './src/js/bundles/attendance.js'
    },
@@ -51,7 +52,14 @@ module.exports = {
   plugins: [
     new webpack.optimize.UglifyJsPlugin({
       include: /\.min\.js$/,
-      minimize: true
+      minimize: true,
+      extractComments: true,
+      sourceMap: false
+    }),
+    new webpack.ProvidePlugin({
+      $: "jquery", // Used for Bootstrap JavaScript components
+      jQuery: "jquery", // Used for Bootstrap JavaScript components
+      Popper: ['popper.js', 'default'] // Used for Bootstrap dropdown, popup and tooltip JavaScript components
     })
   ]
 };
