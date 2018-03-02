@@ -3,6 +3,9 @@ import 'bootstrap/js/src/util';
 import 'bootstrap/js/src/dropdown';
 import 'bootstrap/js/src/collapse';
 
+import { introJs } from 'intro.js';
+import template  from 'lodash.template';
+
 import axios from 'axios';
 import googleApi from 'load-google-maps-api';
 import Cookie from 'js-cookie';
@@ -11,7 +14,7 @@ import { createOption } from 'utils/dom';
 import { findLocation } from 'utils/geolocation';
 import GoogleMap from 'google-map';
 import tableHtml from "google-map/template/table.html";
-
+import popupSample from "google-map/template/sample_popup.html";
 
 class View {
   constructor() {
@@ -22,6 +25,14 @@ class View {
       rootId: 'map',
       contentTemplate: tableHtml
     });
+
+    if(!Cookie.get('introDisplayed')) {
+      this.displayTutorial();
+    }
+
+    document.querySelector('.help').onclick = () => {
+      this.displayTutorial();
+    }
 
     this.loadStates().then(() => {
       let stateId = Cookie.get('stateId');
@@ -48,6 +59,43 @@ class View {
       }
     });
 
+  }
+
+  displayTutorial() {
+    let view = template(popupSample)();
+    let form = document.querySelector('.search-bar form');
+    let map = document.querySelector('.map');
+
+    Cookie.set('introDisplayed', true , { expires: 1 });
+
+    introJs()
+      .setOptions({
+        skipLabel: 'Saltar',
+        nextLabel: 'Siguiente',
+        prevLabel: 'Anterior',
+        doneLabel: 'Ok',
+        showStepNumbers: true,
+        steps: [{
+            intro: 'Bienvenido! A continuacion te mostramos como identificar a tu diputado.'
+          }, {
+            element: form,
+            intro: 'Primero deberas indicarnos el estado en el que vives.'
+          }, {
+            element: map,
+            intro: 'Posteriormente te mostraremos los distritos que componen tu estado.',
+            position: 'bottom-middle-aligned'
+          }, {
+            element: map,
+            intro: 'Deberas indentificar el distrito donde vives y al dar clic sobre el.',
+            position: 'bottom-middle-aligned'
+          }, {
+            element: map,
+            intro: `<span class="mb-2">Te mostraremos el diputado que te representa</span>
+                      ${view}
+                    <span class="block mt-3">Selecciona "Ver mas" para acceder a su perfil y desempeño.</span>`,
+            position: 'bottom-middle-aligned'
+          }]
+      }).start();
   }
 
   hideModal() {
