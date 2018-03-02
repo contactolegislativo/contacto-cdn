@@ -2,6 +2,7 @@
 import 'bootstrap/js/src/util';
 import 'bootstrap/js/src/dropdown';
 import 'bootstrap/js/src/collapse';
+import 'bootstrap/js/src/tooltip';
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
@@ -69,3 +70,6 @@ class Register extends Component {
 }
 
 ReactDOM.render(<Register />, document.querySelector('.attendance'));
+
+// Enable tooltip
+$(function () { $('[data-toggle="tooltip"]').tooltip(); })
