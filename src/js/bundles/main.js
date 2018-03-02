@@ -76,23 +76,23 @@ class View {
         doneLabel: 'Ok',
         showStepNumbers: true,
         steps: [{
-            intro: 'Bienvenido! A continuacion te mostramos como identificar a tu diputado.'
+            intro: 'Bienvenido! A continuación te mostramos como identificar a tu diputado.'
           }, {
             element: form,
-            intro: 'Primero deberas indicarnos el estado en el que vives.'
+            intro: 'Primero deberás indicarnos el estado en el que vives.'
           }, {
             element: map,
             intro: 'Posteriormente te mostraremos los distritos que componen tu estado.',
             position: 'bottom-middle-aligned'
           }, {
             element: map,
-            intro: 'Deberas indentificar el distrito donde vives y al dar clic sobre el.',
+            intro: 'Deberás identificar el distrito donde vives y al dar clic sobre el.',
             position: 'bottom-middle-aligned'
           }, {
             element: map,
-            intro: `<span class="mb-2">Te mostraremos el diputado que te representa</span>
+            intro: `<span class="mb-2">Te mostraremos el diputado que te representa: </span>
                       ${view}
-                    <span class="block mt-3">Selecciona "Ver mas" para acceder a su perfil y desempeño.</span>`,
+                    <span class="block mt-3">Selecciona "Ver más" para acceder a su perfil y desempeño.</span>`,
             position: 'bottom-middle-aligned'
           }]
       }).start();
