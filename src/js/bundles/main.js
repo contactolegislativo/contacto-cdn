@@ -30,8 +30,11 @@ class View {
       this.displayTutorial();
     }
 
-    document.querySelector('.help').onclick = () => {
+    let help = document.querySelector('.help');
+
+    help.onclick = help.ontouchstart = (event) => {
       this.displayTutorial();
+      event.preventDefault();
     }
 
     this.loadStates().then(() => {
