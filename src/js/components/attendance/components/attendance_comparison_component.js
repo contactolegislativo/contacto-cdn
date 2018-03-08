@@ -39,7 +39,7 @@ export default function(props) {
         frame={props.frame}
         title={title}
         subtitle={'Fuente Estadistica'}
-        subtitlelink={`/legislatura/LXIII/asistencias`}/>
+        subtitlelink={`/camara-de-diputados/LXIII/asistencias`}/>
     </div>
   );
 }

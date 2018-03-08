@@ -39,7 +39,7 @@ class AttendanceSummaryComparisonByStateGraph extends Component {
           frame={this.props.frame}
           title={'¿Cual es el desempeño \npor estado de la republica?'}
           subtitle={'Fuente Estadistica'}
-          subtitlelink={`/legislatura/LXIII/asistencias`}/>
+          subtitlelink={`/camara-de-diputados/LXIII/asistencias`}/>
       </div>
     );
   }

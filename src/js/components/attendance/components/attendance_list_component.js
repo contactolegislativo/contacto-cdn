@@ -34,12 +34,7 @@ class AttendanceList extends Component {
   renderItems() {
     return this.props.attendanceList.map(item => {
       let path = normalize(item.state).replace(/ /g,'-').toLowerCase();
-      let url = '';
-      if(item.type === 'Representación proporcional') {
-        url = `/legislatura/LXIII/diputado/${path}/circunscripcion/${item.district}/${item.id}`;
-      } else {
-        url = `/legislatura/LXIII/diputado/${path}/distrito/${item.district}`;
-      }
+      let url = `/camara-de-diputados/LXIII/${item.slug}`;
 
       return (
         <tr key={item.id}>

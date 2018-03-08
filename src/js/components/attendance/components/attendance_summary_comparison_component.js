@@ -39,7 +39,7 @@ class AttendanceSummaryComparisonGraph extends Component {
           frame={this.props.frame}
           title={'¿Cual es el desempeño \nde cada partido en la camara?'}
           subtitle={'Fuente Estadistica'}
-          subtitlelink={`/legislatura/LXIII/asistencias`}/>
+          subtitlelink={`/camara-de-diputados/LXIII/asistencias`}/>
       </div>
     );
   }
