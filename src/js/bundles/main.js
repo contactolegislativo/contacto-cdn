@@ -1,7 +1,4 @@
-// Bootstrap
-import 'bootstrap/js/src/util';
-import 'bootstrap/js/src/dropdown';
-import 'bootstrap/js/src/collapse';
+import './utils'; // Bootstrap utils
 
 import { introJs } from 'intro.js';
 import template  from 'lodash.template';

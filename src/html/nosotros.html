@@ -6,8 +6,7 @@
     <meta name="theme-color" content="#dc3545">
     <title>Nosotros | Contacto Legislativo</title>
     <meta name="description" content="Contacto Legislativo es un observatorio político cuyo objetivo es proveer de información sobre el desempeño de los integrantes de cámara de senadores y cámara de diputados. Nuestro portal provee un análisis estadístico de asistencias, iniciativas y votaciones de los integrantes del congreso de la unión.">
-    <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/css/basic.css">
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
@@ -21,8 +20,15 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="/camara-de-diputados/LXIII/asistencias">Estadisticas</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              LXIII
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="/camara-de-diputados/LXIII">Resumen</a>
+              <a class="dropdown-item" href="/camara-de-diputados/LXIII/asistencias">Asistencias</a>
+              <!-- <a class="dropdown-item" href="/camara-de-diputados/LXIII/iniciativas">Iniciativas</a> -->
+            </div>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="/nosotros">Nosotros</a>
@@ -31,22 +37,45 @@
       </div>
     </nav>
     <div class="container text-justify pt-3">
-      <h1 class="h4 pb-4">¿Que es Contacto Legislativo?</h1>
-      <p><strong>Contacto Legislativo</strong> es un observatorio político cuyo objetivo es proveer de información sobre el desempeño de los integrantes de las cámaras del congreso de la unión conformados por cámara de senadores y cámara de diputados. Nuestro portal provee un análisis estadístico de asistencias, iniciativas y votaciones de los integrantes del congreso de la unión. </p>
-      <p> Somos una iniciativa creada por un grupo de ciudadanos independientes preocupados por la brecha de comunicación entre representantes políticos y la ciudadanía.</p>
-      <p>Creemos que abrir espacios de debate entre representantes y ciudadanos favorece el desarrollo del país, pues propicia la participación ciudadana en el desarrollo de iniciativas e incrementa el sentido de responsabilidad de servidores públicos.</p>
-      <p>Con tal propósito se ha creado una plataforma web que permita a la ciudadanía identificar a su diputado federal, obtener su información de contacto y un resumen de su desempeño de una manera amigable.</p>
-      <p>Contacto Legislativo recaba información de varias fuentes como lo son INEGI, INE, Cámara de Diputados, así como de otras iniciativas como 3de3 de IMCO y #SinVotoNoHayDinero.</p>
+      <body class="c14">
+        <p><h1 class="h2">Nosotros</h1></p>
+        <p><h2 class="h4">&iquest;Que es Contacto Legislativo?</h4></p>
+        <blockquote class="blockquote text-right">
+          <p class="mb-0">TL;DR &nbsp;Un portal que te permite encontrar a tus representantes y tener un reporte sobre su desempe&ntilde;o.</p>
+        </blockquote>
+        <p>Contacto Legislativo es un observatorio pol&iacute;tico cuyo objetivo es proveer de informaci&oacute;n sobre el desempe&ntilde;o de los integrantes de las c&aacute;maras del congreso de la uni&oacute;n conformados por c&aacute;mara de senadores y c&aacute;mara de diputados.<br></p>
+        <p>Con tal prop&oacute;sito se ha creado una plataforma web que permita a la ciudadan&iacute;a identificar a su diputado federal, obtener su informaci&oacute;n de contacto y un resumen de su desempe&ntilde;o.<br></p>
 
-      <h2 class="h4 pt-4 pb-4">Metodologia</h2>
-      <p>Nuestro sitio recaba informacion del portal de <a href="http://sitl.diputados.gob.mx/LXI_leg/info_diputados.php" target="_blank">Camara de diputados</a>
-        como lo son perfil de diputado, asistencia, iniciativas y votaciones, posteriormente se realiza un analisis estadistico para establecer una comparativa
-        en cada uno de los criterios a evaluar, con el fin de permitir al ciudadano entender mas a detalle el desempeño de su representante.</p>
-      <p>Información sobre distritos asi como cartografia son proporcionados por <a href="http://portalanterior.ine.mx/archivos3/portal/historico/contenido/Geografia_Electoral_y_Cartografia/" target="_blank">INE</a>.</p>
-      <p>Puede descargar una copia de nuestra informacion en la siguiente <a href="/contacto_legislativo.zip" target="_blank">liga</a>.</p>
+        <p><h2 class="h4">&iquest;Por que contacto legislativo? </h4></p>
+        <blockquote class="blockquote text-right">
+          <p class="mb-0">TL;DR &nbsp;Por que no existe una herramienta parecida y es necesaria.</p>
+        </blockquote>
+        <p>Creemos que un elemento fundamental para mejorar la situaci&oacute;n pol&iacute;tica de nuestro pa&iacute;s es cerrar la brecha de comunicaci&oacute;n entre mandatarios(gobierno) y mandantes(ciudadanos).</p>
+        <p>En este sentido, y con base en nuestra experiencia, creemos que las herramientas proporcionadas por el gobierno para identificar a nuestros representantes est&aacute;n lejos de ser &oacute;ptimas y la informaci&oacute;n que ofrecen pierde valor al no mostrarla de manera amigable. </p>
+        <p>Es as&iacute; como nosotros decidimos dar un paso al frente y explorar cu&aacute;l ser&iacute;a la mejor manera de distribuir dicha informaci&oacute;n, creando una herramienta que permita a los ciudadanos tener visibilidad de sus representantes y exhortarlos a proveer retroalimentaci&oacute;n, con la esperanza de que mandatarios busque nuevas formas de relacionarse con sus mandantes. </p>
 
-      <h2 class="h4 pt-4 pb-4">Aclaraciones</h2>
-      <p>Aclaraciones o dudas pueden ser hechas a traves de nuestro pefil de twitter <a href="https://twitter.com/clegislativomx">@clegislativomx</a>.</p>
+        <p><h2 class="h4">&iquest;Como funciona contacto legislativo?</h4></p>
+        <blockquote class="blockquote text-right">
+          <p class="mb-0">TL;DR &nbsp;Consolidamos la informaci&oacute;n de varios portales de gobierno federal, realizamos un an&aacute;lisis estad&iacute;stico y generamos un resumen para cada diputado.</p>
+        </blockquote>
+        <p>Nuestro sistema analiza peri&oacute;dicamente portales de c&aacute;mara de diputados y gobernaci&oacute;n por informaci&oacute;n sobre la legislatura actual y sus integrantes, consolida dicha informaci&oacute;n en nuestra base de datos donde nuestro equipo realiza una limpieza de datos y se asegura de la integridad de los mismos. </p>
+        <p>Posteriormente se realiza un an&aacute;lisis estad&iacute;stico sobre los mismos para poder ofrecer una comparativa entre diputados con base en varios criterios. Finalmente los datos son publicados en nuestro portal.</p>
+
+        <p><h2 class="h4">&iquest;Quienes est&aacute;n detr&aacute;s de contacto legislativo? </h4></p>
+        <blockquote class="blockquote text-right">
+          <p class="mb-0">TL;DR &nbsp;Somos un grupo de ciudadanos independientes comprometidos con la transparencia en el trabajo legislativo.</p>
+        </blockquote>
+        <p>Somos un grupo de ciudadanos independientes, profesionistas con experiencia tecnol&oacute;gica, apasionados sobre el an&aacute;lisis de datos que se dieron a la tarea de invertir su tiempo para la creaci&oacute;n de una herramienta que impacte de manera positiva a la sociedad Mexicana. </p>
+
+        <p><h2 class="h4">&iquest;Qui&eacute;n financia contacto legislativo? </h4></p>
+        <blockquote class="blockquote text-right">
+          <p class="mb-0">TL;DR Todo gasto sale de nuestros bolsillos, no tenemos afiliaci&oacute;n con grupos empresariales o pol&iacute;ticos.</p>
+        </blockquote>
+        <p>La inversi&oacute;n principal es el tiempo y experiencia de nuestro equipo de ingenieros, este proyecto lleva un a&ntilde;o en construcci&oacute;n y se realiza en nuestro tiempo libre. &iquest;Que ganan? La satisfacci&oacute;n de crear algo nuevo que impacte de manera positiva la sociedad y experiencia. &nbsp;</p>
+        <p>El costo de infraestructura mensual ronda los $500 pesos mensuales y es donado por los miembros del equipo. Donaciones son bienvenidas. </p>
+
+        <h2 class="h4 pt-4 pb-4">Aclaraciones</h2>
+        <p>Aclaraciones o dudas pueden ser hechas a traves de nuestro pefil de twitter <a href="https://twitter.com/clegislativomx">@clegislativomx</a>.</p>
     </div>
 
     <footer class="text-muted font-italic">

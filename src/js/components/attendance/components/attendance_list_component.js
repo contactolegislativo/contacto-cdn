@@ -53,7 +53,7 @@ class AttendanceList extends Component {
             </span>
           </td>
           <td className="d-none d-sm-table-cell">{item.party.toUpperCase()}</td>
-          <td>{item.entries}</td>
+          <td>{item.attendance}</td>
         </tr>
       );
     });

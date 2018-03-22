@@ -4,3 +4,7 @@ export { default as DoughnutChart } from './components/doughnut_chart';
 export { default as DoublePieChart } from './components/double_pie_chart';
 export { default as GaugeChart } from './components/gauge_chart';
 export { default as Loader } from './components/loader';
+export { default as PieChart} from './components/pie-chart';
+export { default as PictoralFillBar} from './components/pictorial-fill-bar';
+export { default as PictoralBar} from './components/pictorial-bar';
+export { default as BarYCategory} from './components/bar-y-category-chart';

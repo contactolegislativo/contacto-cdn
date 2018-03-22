@@ -61,7 +61,8 @@ let option = {
 
 class DoughnutChart extends Component {
   parseChartOptions(props) {
-    let initialRatio = (props.frame.width / 3);
+    let legend = props.legend || {};
+    let initialRatio = props.frame.width < props.frame.height ? (props.frame.width / 3) : (props.frame.height / 3);
     let doughtnutWidth = initialRatio / (2 * props.seriesArray.length);
     let x = initialRatio, y = initialRatio + doughtnutWidth;
     let seriesArray = props.seriesArray.map((item, index) => {
@@ -112,6 +113,7 @@ class DoughnutChart extends Component {
         },
         legend: {
           ...CoreHelper.horizontalScrollLegend,
+          ...legend,
           data: props.labels,
           top: 55,
           formatter: props.simpleFormatter

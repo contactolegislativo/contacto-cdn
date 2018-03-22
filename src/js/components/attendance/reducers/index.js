@@ -66,7 +66,7 @@ export function AttendanceByDeputyTypeReducer(state = [], action) {
 export function AttendanceAvgReducer(state = [], action) {
   switch (action.type) {
     case FETCH_ATTENDANCE_AVG:
-        return action.payload.data;
+        return action.payload.data[0];
     default:
       return state;
   }
