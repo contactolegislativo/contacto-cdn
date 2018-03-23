@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import echarts from 'echarts/dist/echarts-en.min.js';
 import CoreChart from './core_chart';
 
 var ChartSettings = {

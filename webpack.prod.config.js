@@ -8,32 +8,35 @@ module.exports = {
      main: './src/js/bundles/main.js',
      utils: './src/js/bundles/utils.js',
      deputy: './src/js/bundles/deputy.js',
-     attendance: './src/js/bundles/attendance.js'
+     attendance: './src/js/bundles/attendance.js',
+     chamber: './src/js/bundles/chamber.js'
    },
    output: {
        path: path.resolve(__dirname, 'dist/js'),
        filename: "[name].bundle.js"
    },
    module: {
-       loaders: [
-           {
-               // test: /\.js$/,
-               test: /\.jsx?$/,
-               loader: 'babel-loader',
-               query: {
-                   presets: ['react', 'es2015', 'stage-0']
-               }
-           },
-           {
-              test: /\.(html)$/,
-              use: {
-                loader: 'html-loader',
-                options: {
-                  attrs: [':data-src']
-                }
+     rules: [
+         {
+             // test: /\.js$/,
+             test: /\.js?$/,
+             loader: 'babel-loader',
+             exclude: ['/node_modules/'],
+             query: {
+                compact: false,
+                presets: ['react', 'es2015', 'stage-0']
+             }
+         },
+         {
+            test: /\.(html)$/,
+            use: {
+              loader: 'html-loader',
+              options: {
+                attrs: [':data-src']
               }
-          }
-       ]
+            }
+        }
+     ]
    },
    stats: {
        colors: true

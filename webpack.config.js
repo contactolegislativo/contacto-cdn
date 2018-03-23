@@ -6,18 +6,20 @@ module.exports = {
      main: './src/js/bundles/main.js',
      utils: './src/js/bundles/utils.js',
      deputy: './src/js/bundles/deputy.js',
-     attendance: './src/js/bundles/attendance.js'
+     attendance: './src/js/bundles/attendance.js',
+     chamber: './src/js/bundles/chamber.js'
    },
    output: {
        path: path.resolve(__dirname, 'dist/js'),
        filename: "[name].bundle.js"
    },
    module: {
-       loaders: [
+       rules: [
            {
                // test: /\.js$/,
-               test: /\.jsx?$/,
+               test: /\.js?$/,
                loader: 'babel-loader',
+               exclude: ['/node_modules/'],
                query: {
                    presets: ['react', 'es2015', 'stage-0']
                }

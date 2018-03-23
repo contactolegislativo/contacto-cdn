@@ -16,10 +16,11 @@ var generateTitle = function(deputyName, gauges) {
 
 export default function(props) {
   // We need to have attedance and attendance frequency to display this chart
-  if(props.attendanceByParty.length === 0 || props.attendanceAvg.average === undefined ||  typeof props.attendance !== 'number')
+  if(props.attendanceByParty.length === 0 || !props.attendanceAvg.average ||  typeof props.attendance !== 'number')
     return <Loader width={props.frame.width}/>;
 
-  let party = props.attendanceByParty.find(item => item.party === props.deputyParty );
+  let searchParty = props.deputyParty.toLowerCase();
+  let party = props.attendanceByParty.find(item => item.party === searchParty );
   let gauges = {
     camara: { value: props.attendanceAvg.average, name: 'Camara' },
     deputy: { value: props.attendance, name: 'Diputado' },

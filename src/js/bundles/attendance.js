@@ -1,7 +1,4 @@
-// Boottrap
-import 'bootstrap/js/src/util';
-import 'bootstrap/js/src/dropdown';
-import 'bootstrap/js/src/collapse';
+import './utils'; // Bootstrap utils
 // DataTables
 import 'datatables/media/js/jquery.dataTables'
 
@@ -61,3 +58,13 @@ class Register extends Component {
 }
 
 ReactDOM.render(<Register />, document.querySelector('.attendance'));
+
+$('.table').dataTable({
+  "language": {
+    "lengthMenu": "Mostrando _MENU_ diputados por pagina",
+    "zeroRecords": "No se encontro",
+    "info": "Mostrando _PAGE_ de _PAGES_",
+    "infoEmpty": "Ningun diputado disponible",
+    "infoFiltered": "(filtrado de un total de _MAX_ diputados)"
+  }
+});

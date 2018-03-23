@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import echarts from 'echarts/dist/echarts-en.min.js';
 import CoreChart from './core_chart';
 import CoreHelper from './core_helper';
 
@@ -147,7 +146,7 @@ var ChartSettings = {
               endAngle: 45,
               center: ['25%', '20%'],
               radius: '40%',
-              splitNumber: 3,
+              splitNumber: 4,
               detail: {
                 fontSize: 16
               }
@@ -155,7 +154,7 @@ var ChartSettings = {
               endAngle: 45,
               center: ['75%', '70%'],
               radius: '40%',
-              splitNumber: 3,
+              splitNumber: 4,
               detail: {
                 fontSize: 16
               }
@@ -174,8 +173,8 @@ class GaugeChart extends Component {
   render() {
     const { left, right, center, title, subtitle, subtitlelink, boundaries } = this.props;
 
-    let floor = boundaries.min - boundaries.min % 10;
-    let ceiling = boundaries.max % 10 === 0 ? boundaries.max : boundaries.max  + (10 - boundaries.max % 10);
+    let floor = boundaries.min - boundaries.min % 5;
+    let ceiling = boundaries.max % 5 === 0 ? boundaries.max : boundaries.max  + (5 - boundaries.max % 5);
 
     let options = {
       baseOption: {
