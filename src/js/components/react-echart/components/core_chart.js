@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import echarts from 'echarts/dist/echarts-en.min.js';
+import echarts from 'echarts/dist/echarts-en.js';
 
 class CoreChart extends Component {
   createChart() {

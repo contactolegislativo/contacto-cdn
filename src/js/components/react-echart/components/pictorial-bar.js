@@ -2,7 +2,7 @@
 import React from 'react';
 import CoreChart from './core_chart';
 
-const spirit = 'image://https://image.flaticon.com/icons/svg/683/683646.svg';
+const spirit = 'image:///assets/img/deputy.svg';
 
 function buildOptions(props) {
   let maxData = 0, data = [], label = [];

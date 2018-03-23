@@ -3,10 +3,10 @@ var webpack = require('webpack');
 
 module.exports = {
    entry: {
-     // main: './src/js/bundles/main.js',
-     // utils: './src/js/bundles/utils.js',
-     // deputy: './src/js/bundles/deputy.js',
-     // attendance: './src/js/bundles/attendance.js',
+     main: './src/js/bundles/main.js',
+     utils: './src/js/bundles/utils.js',
+     deputy: './src/js/bundles/deputy.js',
+     attendance: './src/js/bundles/attendance.js',
      chamber: './src/js/bundles/chamber.js'
    },
    output: {
