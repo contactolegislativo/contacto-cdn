@@ -2,6 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
+  mode: 'development',
    entry: {
      main: './src/js/bundles/main.js',
      utils: './src/js/bundles/utils.js',
@@ -16,14 +17,16 @@ module.exports = {
    module: {
        rules: [
            {
-               // test: /\.js$/,
-               test: /\.js?$/,
-               loader: 'babel-loader',
-               exclude: ['/node_modules/'],
-               query: {
-                   presets: ['react', 'es2015', 'stage-0']
-               }
-           },
+              test: /\.js$/,
+              exclude: /node_modules/,
+              use: {
+                loader: 'babel-loader?cacheDirectory=true',
+                options: {
+                  presets: ['react', 'env'],
+                  plugins: [require('babel-plugin-transform-object-rest-spread')]
+                }
+              }
+            },
            {
               test: /\.(html)$/,
               use: {

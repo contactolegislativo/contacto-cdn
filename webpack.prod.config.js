@@ -1,9 +1,8 @@
 var path = require('path');
 var webpack = require('webpack');
 
-console.log(path.resolve(__dirname, 'src/js/components'))
-
 module.exports = {
+   mode: 'production',
    entry: {
      main: './src/js/bundles/main.js',
      utils: './src/js/bundles/utils.js',
@@ -17,16 +16,17 @@ module.exports = {
    },
    module: {
      rules: [
-         {
-             // test: /\.js$/,
-             test: /\.js?$/,
-             loader: 'babel-loader',
-             exclude: ['/node_modules/'],
-             query: {
-                compact: false,
-                presets: ['react', 'es2015', 'stage-0']
-             }
-         },
+       {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader?cacheDirectory=true',
+            options: {
+              presets: ['react', 'env'],
+              plugins: [require('babel-plugin-transform-object-rest-spread')]
+            }
+          }
+        },
          {
             test: /\.(html)$/,
             use: {
@@ -53,16 +53,17 @@ module.exports = {
     extensions: ['.js', '.jsx']
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      include: /\.min\.js$/,
-      minimize: true,
-      extractComments: true,
-      sourceMap: false
-    }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   include: /\.min\.js$/,
+    //   minimize: true,
+    //   extractComments: true,
+    //   sourceMap: false
+    // }),
     new webpack.ProvidePlugin({
       $: "jquery", // Used for Bootstrap JavaScript components
       jQuery: "jquery", // Used for Bootstrap JavaScript components
       Popper: ['popper.js', 'default'] // Used for Bootstrap dropdown, popup and tooltip JavaScript components
     })
-  ]
+  ],
+  performance: { hints: false }
 };
