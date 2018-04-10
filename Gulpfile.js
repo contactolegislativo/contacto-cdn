@@ -36,8 +36,10 @@ gulp.task('html', function() {
 gulp.task('img', function() {
     gulp.src('src/img/**.*')
         .pipe(gulp.dest('./dist/img'));
-        gulp.src('src/img/deputies/**.*')
-            .pipe(gulp.dest('./dist/img/deputies'));
+    gulp.src('src/img/deputies/**.*')
+        .pipe(gulp.dest('./dist/img/deputies'));
+    gulp.src('src/img/deputies/canvas/**.*')
+        .pipe(gulp.dest('./dist/img/deputies/canvas'));
 });
 
 gulp.task('js', function() {
