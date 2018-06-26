@@ -10,3 +10,5 @@ export { default as AttendanceDeputySummary } from './components/attendance_depu
 export { default as AttendanceDeputyPayment } from './components/attendance_deputy_payment_component';
 export { default as AttendanceDeputyPartyBudget } from './components/attendance_deputy_party_budget_component';
 export { default as AttendanceClosure } from './components/attendance_closure_component';
+export { default as AttendanceDynamicComparison } from './components/attendance_dynamic_comparison_component';
+export { default as Scene } from './components/scene_component';

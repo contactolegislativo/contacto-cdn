@@ -1,61 +1,69 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Loader } from 'react-echart';
 import { fetchAttendance, fetchAttendanceFrequency, fetchAttendanceAvg, fetchAttendanceByParty } from '../actions';
 import { AttendanceGraph, AttendanceFrequencyGraph, AttendanceComparisonGraph,
   AttendanceDeputySummary, AttendanceDeputyPayment, AttendanceDeputyPartyBudget,
-  AttendanceClosure } from 'attendance';
+  AttendanceClosure, AttendanceDynamicComparison } from 'attendance';
 
-function createSlices(list, sliceSize) {
-  let top = { value: 0, items: [] };
-  let slices = [];
-  list.forEach(item => {
-    if(top.value + item.frequency > sliceSize) {
-      // new item does not fit in top slice
-      top.name = top.items.length > 1 ? `${top.items[0].quantity} - ${top.items[top.items.length - 1].quantity}` : `${top.items[0].quantity}`;
-      slices.push({ name: top.name, value: top.value });
-      top = { name: item.quantity, value: item.frequency, items: [ item ]};
+function clasifyAttendance(baseline, frequency) {
+  var above = 0, equals = 0, below = 0;
+  frequency.forEach(item => {
+    if(item.quantity < baseline) {
+      below += item.frequency;
+    } else if(item.quantity == baseline) {
+      equals += item.frequency;
     } else {
-      // Accoumulate at top
-      top.value += item.frequency;
-      top.items.push(item);
+      above += item.frequency;
     }
   });
 
-  if(top.value > 0) {
-    top.name = top.items.length > 1 ? `${top.items[0].quantity} - ${top.items[top.items.length - 1].quantity}` : `${top.items[0].quantity}`;
-    slices.push({ name: top.name, value: top.value });
-  }
-
-  return slices;
+  return { above, equals, below };
 }
 
-
-var clasifyAttendanceFrecuency = function(attendance, groupRatio, attendanceFrequency) {
-  let inner = [{ value: 0, name: `< ${attendance}`, group: []}, { value: 0, name: `${attendance}`, selected: true, group: [] }, { value: 0, name: `> ${attendance}`, group: []}];
-
-  attendanceFrequency.forEach(item => {
-    if(item.quantity < attendance) {
-      inner[0].value += item.frequency;
-      inner[0].group.push(item);
-    } else if(item.quantity === attendance) {
-      inner[1].value += item.frequency;
-      item.selected = true;
-      inner[1].group.push(item);
-    } else {
-      inner[2].value += item.frequency;
-      inner[2].group.push(item);
-    }
+function createScenes(attendance, chamber, parties) {
+  var scenes = parties.map(party => {
+    return {
+      main: {
+        name: party.party,
+        resource: `/assets/img/${party.party}.png`
+      },
+      title: `${party.average} Asistencias`,
+      header: {
+        upper: `Tu diputado tiene ${ attendance > party.average ? 'MEJOR' : 'PEOR' } asistencia`,
+        lower: `Que el promedio de diputados del partido ${party.party.toUpperCase()}`
+      },
+      isFixed: false
+    };
   });
 
-  let outer = createSlices(inner[0].group, groupRatio).concat(createSlices(inner[1].group, groupRatio)).concat(createSlices(inner[2].group, groupRatio));
+  scenes.unshift({
+    main: {
+      name: 'Camara de diputados',
+      resource: `/assets/img/camara_sqr.png`
+    },
+    title: '',
+    header: {
+      upper: 'Tu diputado tiene MEJOR asistencia que',
+      lower: `${chamber.below} diputados de la camara`
+    },
+    isFixed: false
+  });
 
-  return {
-    inner,
-    outer,
-    above: inner[2].value,
-    below: inner[0].value + inner[1].value,
-    total: inner[0].value + inner[1].value + inner[2].value
-  };
+  scenes.push({
+    main: {
+      name: 'Camara de diputados',
+      resource: `/assets/img/camara_sqr.png`
+    },
+    title: '',
+    header: {
+      upper: `Existen ${chamber.above} diputados con`,
+      lower: `MEJOR asistencia que tu diputado`
+    },
+    isFixed: false
+  });
+
+  return scenes;
 }
 
 class AttendanceContainer extends Component {
@@ -67,11 +75,17 @@ class AttendanceContainer extends Component {
   }
 
   render() {
-    let frequency = {}, percentage = 0;
-    if(this.props.attendance && this.props.attendanceFrequency.length !== 0 ) {
-      frequency = clasifyAttendanceFrecuency(this.props.attendance, 55, this.props.attendanceFrequency)
-      percentage = (frequency.below * 100) / frequency.total;
+    let chamber = {}, scenes = [], percentage = 0;
+    let mainParties = ['pri', 'pan', 'prd', 'movimiento ciudadano', 'morena'];
+
+    if((this.props.attendance.length !== undefined && this.props.attendance.length === 0) || this.props.attendanceFrequency.length === 0 || this.props.attendanceByParty.length === 0) {
+      return <Loader width={this.props.frame.width}/>;
     }
+
+    mainParties.push(this.props.deputy.party);
+    chamber = clasifyAttendance(this.props.attendance, this.props.attendanceFrequency);
+    percentage = (chamber.below * 100) / (chamber.above + chamber.equals + chamber.below);
+    scenes = createScenes(this.props.attendance, chamber, this.props.attendanceByParty.filter(item => mainParties.includes(item.party)));
 
     return (
       <div>
@@ -82,18 +96,10 @@ class AttendanceContainer extends Component {
           deputyId={this.props.deputy.id}
           deputyName={this.props.deputy.name}
           frame={this.props.frame}/>
-        <AttendanceFrequencyGraph
-          inner={frequency.inner}
-          outer={frequency.outer}
-          deputyName={this.props.deputy.name}
-          frame={this.props.frame}/>
-        <AttendanceComparisonGraph
-          attendance={this.props.attendance}
-          attendanceAvg={this.props.attendanceAvg}
-          attendanceByParty={this.props.attendanceByParty}
-          deputyId={this.props.deputy.id}
-          deputyName={this.props.deputy.name}
-          deputyParty={this.props.deputy.party}
+        <AttendanceDynamicComparison
+          baseline={this.props.attendance}
+          deputy={this.props.deputy}
+          scenes={scenes}
           frame={this.props.frame}/>
         <AttendanceDeputySummary
           deputy={this.props.deputy}

@@ -1,0 +1,55 @@
+.layout {
+  position: relative;
+  overflow-x: hidden;
+}
+.scene {
+  text-align: center;
+  height: 100vh;
+  width: 100%!important;
+}
+.scene.fixed {
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+.scene.absolute.top {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.scene.absolute.bottom {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.scene-row {
+  /* transform: translateY(50%); */
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.scene-column {
+  text-align: center;
+}
+.scene-column.left {
+  margin-right: 50%;
+}
+.scene-column.right {
+  margin-left: 50%;
+}
+
+.enter {
+  transform: translateX(0%)!important;
+}
+
+.scene.animated {
+  transform: translateX(100%);
+}
+
+.animated {
+  transition-property: transform;
+  transition-duration: 1s;
+  transition-delay: 0s;
+}
